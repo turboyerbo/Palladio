@@ -567,6 +567,10 @@
       "0x6527c5d9104d16637dc5d56b3627d7b59f55daf25dd1bba2c4f881d0b8f4e14d": {
         "name": "PalladioCadToken",
         "address": "0xabddae412a08819b20387db8735819b9210f0ca4"
+      },
+      "0xb93c6517312f1f6833ded5b7d4a14f27e2eaaf14063bce0f6d5e362913b7bacc": {
+        "name": "Voting",
+        "address": "0xc0cbbf662f77b2d4ddd88f597aedc5beb472c7ac"
       }
     },
     "name": "testnet"

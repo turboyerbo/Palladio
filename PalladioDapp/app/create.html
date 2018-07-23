@@ -3,7 +3,7 @@
   <head>
 
       <meta charset="utf-8">
-      <title>New Contract</title>
+      <title>New Competition</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
       <link rel="stylesheet" href="css/common.css">
@@ -26,7 +26,7 @@
   
   <body class='container'><br>
 
-  <h3>Tools for Architects</h3><br>
+  <h3>Design Competition Form</h3><br>
   <select id="architectAccount"></select><br>
   <a target="_blank" href="https://metamask.io">Web3</a><br><br>
 
@@ -42,9 +42,17 @@
 
 <br><br>
 
+
+
+   Competition Parameters:<br><textarea id='category' name='category' cols='80' rows='15' placeholder="Brief description about the competition."></textarea><br><br>
+    
+
+    <br><br>
+
+<!--
  <select id="category"><br>
       <option>CAD to Revit</option>
-      <!--<option>Programming*</option>
+    <option>Programming*</option>
       <option>Site Analysis*</option>
       <option>Schematic Design*</option>
       <option>Engineering System Coordination*</option>
@@ -53,10 +61,10 @@
       <option>Design Development*</option>
       <option>Construction Documents*</option>
       <option>Specifications and Material Research*</option>
-      <options>Documents Checking and Coordination*</options>-->
+      <options>Documents Checking and Coordination*</options>
   </select><br>
 
- <a target="_blank" href="http://www.oaa.on.ca/images/docs/1328214720_CERB-3720hours.pdf">Record</a><br><br>
+ <a target="_blank" href="http://www.oaa.on.ca/images/docs/1328214720_CERB-3720hours.pdf">Record</a><br><br>-->
   
 
 <button onclick="myFunction()">File</button><br>
@@ -76,8 +84,8 @@
     }
     </script>
     
-    <a target="_blank" href="https://www.autodesk.com/redshift/3-steps-to-linking-dwg-files-into-revit/">Guide</a><br><br>
-    <br><br>
+   <!-- <a target="_blank" href="https://www.autodesk.com/redshift/3-steps-to-linking-dwg-files-into-revit/">Guide</a><br><br>
+    <br><br>-->
     <input id = 'paymentAmountInput' name='paymentAmountInput' type='text'  placeholder='Ether' size='7'><br>
     <a target="_blank" href="">Payment</a><br><br>
     <br><br><br>
@@ -90,7 +98,7 @@
     <input id="onCreateCBDBtn" type='submit' value='Post on the blockchain' onclick="useCBDFormInput()">
     <div id='outputDiv'></div><br><br><br>
 
-   <h3> <a href='/getAllCBDs.html'>See your post on the platform</a></h3><br><br><br>
+   <h3> <a href='/getAllCBDs.html'>Browse all Design Competitions</a></h3><br><br><br>
   
   </body>
 

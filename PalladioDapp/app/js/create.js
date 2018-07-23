@@ -35,7 +35,7 @@ function useCBDFormInput() {
 
     var commitRecordBook = $("#category").val();
     if (commitRecordBook == '') {
-            alert("Which service would you like to use?");
+            alert("Description?");
             return;
 
     }
@@ -49,7 +49,7 @@ function useCBDFormInput() {
 
     var description = $("#description").val();
     if (description == '') {
-        if (!confirm("Include a link to your file?")) {
+        if (!confirm("Include a description?")) {
             return;
         }
     }
