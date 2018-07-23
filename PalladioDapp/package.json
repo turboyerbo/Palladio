@@ -1,0 +1,30 @@
+{
+  "name": "PalladioDApp",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {
+    "test": "embark test"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.11",
+    "embark": "^2.5.2",
+    "json-loader": "^0.5.7",
+    "mocha": "^2.2.5",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "style-loader": "^0.21.0",
+    "web3": "^0.19.0",
+    "webpack": "^4.6.0"
+  },
+  "dependencies": {
+    "npm": "^5.8.0",
+    "solc": "^0.4.21"
+  }
+}

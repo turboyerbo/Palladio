@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+      <meta charset="utf-8">
+      <title>New Contract</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/common.css">
+    
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script src="https://wallet.metamask.io/metamascara.js"></script>
+  
+    
+  <script src="js/lib/embark.js"></script>
+  <script src="js/lib/jquery.js"></script>
+  <script src="js/lib/constants.js"></script>
+  <script src="js/create.js"></script>
+  </head>
+<!-- <style>
+    a.groove {border-style: groove;}
+  </style>-->
+
+  <a href='/'>Palladio Home</a><br> 
+  
+  <body class='container'><br>
+
+  <h3>Tools for Architects</h3><br>
+  <select id="architectAccount"></select><br>
+  <a target="_blank" href="https://metamask.io">Web3</a><br><br>
+
+  <div>
+  <select id='defaultTimeoutLengthInHoursInput' name='defaultTimeoutLengthInHoursInput'>
+      <option value="0">Select TIME:</option>
+      <option value="1">2 hours</option>
+      <option value="2">4 hours</option>
+      <option value="3">6 hours</option>
+      <option value="4">8 hours</option>
+   </select>
+  </div>
+
+<br><br>
+
+ <select id="category"><br>
+      <option>CAD to Revit</option>
+      <!--<option>Programming*</option>
+      <option>Site Analysis*</option>
+      <option>Schematic Design*</option>
+      <option>Engineering System Coordination*</option>
+      <option>Building Cost Analysis*</option>
+      <option>Code Research*</option>
+      <option>Design Development*</option>
+      <option>Construction Documents*</option>
+      <option>Specifications and Material Research*</option>
+      <options>Documents Checking and Coordination*</options>-->
+  </select><br>
+
+ <a target="_blank" href="http://www.oaa.on.ca/images/docs/1328214720_CERB-3720hours.pdf">Record</a><br><br>
+  
+
+<button onclick="myFunction()">File</button><br>
+
+<p id="description" class='description'></p>
+
+<script>
+    function myFunction() {
+        var description;
+        var file = prompt("Paste the DWG link:", "www.dropbox.com/dwg");
+        if (file == null || file == "") {
+            description = "Link not found.";
+        } else {
+            description = file;
+        }
+        document.getElementById("description").innerHTML = description;
+    }
+    </script>
+    
+    <a target="_blank" href="https://www.autodesk.com/redshift/3-steps-to-linking-dwg-files-into-revit/">Guide</a><br><br>
+    <br><br>
+    <input id = 'paymentAmountInput' name='paymentAmountInput' type='text'  placeholder='Ether' size='7'><br>
+    <a target="_blank" href="">Payment</a><br><br>
+    <br><br><br>
+
+    <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js"></script>
+    <div class="coinmarketcap-currency-widget" data-currencyid="1027" data-base="CAD"
+    data-secondary="" data-ticker="false" data-rank="false" data-marketcap="false" 
+    data-volume="false" data-stats="USD" data-statsticker="false"><br></div><br><br>
+
+    <input id="onCreateCBDBtn" type='submit' value='Post on the blockchain' onclick="useCBDFormInput()">
+    <div id='outputDiv'></div><br><br><br>
+
+   <h3> <a href='/getAllCBDs.html'>See your post on the platform</a></h3><br><br><br>
+  
+  </body>
+
+</html>
+

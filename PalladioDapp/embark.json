@@ -1,0 +1,22 @@
+{
+  "contracts": ["app/contracts/**"],
+  "app": {
+    "css/app.css": ["app/css/**"],
+    "js/lib/embark.js": "embark.js",
+    "js/lib/jquery.js": "app/js/lib/jquery.min.js",
+    "js/lib/constants.js": "app/js/lib/constants.js",
+    "js/index.js": "app/js/index.js",
+    "js/create.js": "app/js/create.js",
+    "js/addArchitect.js": "app/js/addArchitect.js",
+    "js/interact.js": "app/js/interact.js",
+    "js/getAllCBDs.js": "app/js/getAllCBDs.js",
+    "index.html": "app/index.html",
+    "addArchitect.html": "app/addArchitect.html",
+    "create.html": "app/create.html",
+    "interact.html": "app/interact.html",
+    "getAllCBDs.html": "app/getAllCBDs.html"
+  },
+  "buildDir": "dist/",
+  "config": "config/",
+  "plugins": {}
+}
