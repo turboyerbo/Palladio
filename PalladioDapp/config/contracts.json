@@ -27,6 +27,8 @@
       "Owned": {
         "deploy": false
       },
+      "Voting": {
+      },
       "CBDContractFactory": {
       },
       "PalladioCadToken": {

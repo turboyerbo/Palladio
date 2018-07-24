@@ -1,7 +1,7 @@
 // TODO: Some sort of serious logging
 function onError(err) {
     alert("Quick, Call batman! We have a: " + err);
-    $('#onCreateCBDBtn')[0].disabled = false
+    $('#onCreateCBDBtn')[0].disabled = false;
 }
 
 function callNewCBD(valueInEth, licensedArchitect, defaultTimeoutLengthInHours, commitRecordBook, description) {
