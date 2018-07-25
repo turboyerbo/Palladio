@@ -579,6 +579,30 @@
       "0x4d56dbd5401450721bb17c4c5cf6a26bed68b16dccdd545301d7389d260766bd": {
         "name": "PalladioCadToken",
         "address": "0x61bdd998d4dee620dfb3bc3f2a55073e3456dbfd"
+      },
+      "0xc6a77a0971342ffe719fe6c316f1d0717e42583acfe234a66ad0a70b4af7646b": {
+        "name": "CBDContractFactory",
+        "address": "0x0952c3168f746a838d12e43746c584e66e0e6b5d"
+      },
+      "0x194cb4b7297b81f332b17916b229648769ce104746409c02dc33c8b192e6f546": {
+        "name": "PalladioCadToken",
+        "address": "0x1af9d9442f96f18dce2cfcf352a61a5a61819705"
+      },
+      "0xdcb75d84b58370d0ec5d91bda7aebf0857cf13cbc3f7673df81c71ae1eab1e36": {
+        "name": "CBDContractFactory",
+        "address": "0xdcda1e287a6cfdc0b7bb184125d87106f9ca7457"
+      },
+      "0x4f27b1b7bb14a4691a5e7e50b6776a320603ad19317abd6c3ba9fc375a659dac": {
+        "name": "PalladioCadToken",
+        "address": "0x18fcac7d1a451c8e629399b83b4ac42bed29255f"
+      },
+      "0x3181bd2c17cbb3eb5433e5a247ef9102e8a676918471b5a5f0222d52a6f2c621": {
+        "name": "CBDContractFactory",
+        "address": "0x3174339ab3b91b93fa160ed860c6dd32199be285"
+      },
+      "0x3b319af98ca4b8974c88b59427a85d9faf25d7fe051375b359e10c07acc1d380": {
+        "name": "PalladioCadToken",
+        "address": "0xf5106effc18725350226236b730dd264e88aba13"
       }
     },
     "name": "testnet"

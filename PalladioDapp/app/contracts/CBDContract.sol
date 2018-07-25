@@ -77,6 +77,9 @@ contract CBDContract {
     //How long should we wait before allowing the default release to be called?
     uint public autoreleaseInterval;
 
+    //Has the Associate Architect uploaded a file before the timer reaches zero?
+    string public fileUpload;
+
     //Calculated from autoreleaseInterval in commit(),
     //and recaluclated whenever the licensedArchitect (or possibly the associateArchitect) 
     //calls delayhasDefaultRelease()
@@ -102,9 +105,9 @@ contract CBDContract {
     event Committed(address _associateArchitect);
     event RecordBook(string statement);
     event FundsReleased(uint amount);
+    event FileSubmitted(string fileUpload);
     event Closed();
     event Unclosed();
-    event AutoreleaseDelayed();
     event AutoreleaseTriggered();
 
     function CBDContract(address architect, uint _id, uint _autoreleaseInterval, string _recordBook, string _initialStatement)
@@ -176,12 +179,20 @@ contract CBDContract {
         return state;
     }
 
+    function getFileSubmitted()
+    public
+    constant
+    returns(string)
+    {
+        return fileUpload;
+    }
+
     function getFullState()
     public
     constant
-    returns(address, string, string, State, address, uint, uint, uint, uint, uint) 
+    returns(address, string, string, State, address, uint, uint, uint, uint, uint, string) 
     {
-        return (licensedArchitect, recordBook, initialStatement, state, associateArchitect, this.balance, amountDeposited, amountReleased, autoreleaseInterval, autoreleaseTime);
+        return (licensedArchitect, recordBook, initialStatement, state, associateArchitect, this.balance, amountDeposited, amountReleased, autoreleaseInterval, autoreleaseTime, fileUpload);
     }
 
     function getBalance()
@@ -249,23 +260,21 @@ contract CBDContract {
         return autoreleaseTime;
     }
 
-    function release(uint amount)
-    public
-    inState(State.Committed)
-    onlylicensedArchitect() 
-    {
-        internalRelease(amount);
-    }
 
-    function delayAutorelease()
-    public
-    inState(State.Committed) 
-    onlylicensedArchitect()
-    isBeforeAutoRelease()
-    {
-        autoreleaseTime = now + autoreleaseInterval;
-        AutoreleaseDelayed();
-    }
+// File must uploaded by associate before timer reaches 0.
+
+function fileSubmitted(string fileUpload)
+public
+payable
+inState(State.Committed) {
+{
+    if (string(fileUpload).length == 0)
+    return fileUpload;
+}
+
+
+
+
 
 // Autorelease function will send all funds to Associate Architect
 // Automatically sends 2% (in Wei) to Palladio Address; returns false on failure.
@@ -302,7 +311,7 @@ contract CBDContract {
 
      function internalRelease(uint amount)
     private
-    inState(State.Committed)
+    inState(State.Closed)
     {
         CBDContractFactory owner = CBDContractFactory(factory);
         // Palladio charges service fee
