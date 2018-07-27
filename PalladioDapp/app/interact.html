@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>Palladio - CAD with CBD</title>
+    <title>Palladio - Competition</title>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
@@ -21,40 +21,37 @@
     <script src="js/interact.js"></script>
   </head>
   <br><a href='/'>Palladio Home</a>
-  <body class='container'><br><br> 
+  <body class='container'><br>
   <body>
-    <h1 align="center">PalladioCAD</h1><br>
+    <h3 align="center">Contract: <br><br>
+        
+        <span class="insertAddress">loading...</span><br><br>
+        <small><a href='' id="etherscanLink" >View on etherscan.io</a></small><br><br>
+      <br></h3><br>
  
-    <table><tr><font color='#ffffff'>
-        <td width='100%'>
+    <table><tr><font color='white'>
+        <td width='80%'>
             <center><div align='center' color=#ffffff id='userAddress'></div></center>
         </td>
         <td width='80%'><td>
     </tr></table>
-    <br><br>
+    <br>
     <table id='CBDTable' border=1 width='80%' align='center'>
         <tr width='80%'><td width='80%' align='center' colspan=2><br><br>
-              Contract: <br><br>
 
-              <span color="#000000" class="insertAddress">loading...</span><br><br>
-              <small><a href='' id="etherscanLink" >View on etherscan.io</a></small><br><br>
-
-            <small>This Contract is <span id='CBDInfoOutput'>loading...</span><br>with a value of
-            <font color='#000000'><span id='CBDBalanceOutput'><span>loading...</font></small><br>
-            <br>
-    		<form id='recoverFundsInputGroup' hidden='true'>
+    		<form id='recoverFundsInputGroup' hidden='false'>
     		<input type='button' value='Cancel CBD and Recover Funds' onClick='callRecoverFunds()'>
     		</form>
             <br>
             <table width='80%'>
                 <tr width='80%'>
-                    <td width='50%' align='center'>
+                    <td width='80%' align='center'>
                         <form id='licensedArchitectFundsInputGroup' hidden='true'>
                             <input type='text' name='amount' size=3><br>
     						            <input type='button' value='Add Funds' onClick='addFundsFromForm()'></font>
                         </form>
             </td>
-                    <td>
+                  <!--  <td>
                         <table width='80%'>
                             <tr width='80%'>
                                <small><td align='right'><span id='CBDFundsDepositedOutput'>loading...</span> </td><br>
@@ -70,16 +67,16 @@
                                 </tr></small> 
                         </table>
                     </td>
-                    <!--<td width='35%' align='center' display='hidden'>
+                    <td width='35%' align='center' display='hidden'>
                         Commit Threshold:<br>
                         <font color="#cc7700">
                         <span id='CBDCommitThresholdOutput'>loading...</span>
-                        </font>-->
+                        </font>
                     </td>
                     <td align='center'>
                         Default Action:<br>
-                        <font color="#cf7700">
-                        <span id='CBDDefaultActionOutput'>loading...</span>
+                        <font color="white">
+                        <span id='CBDDefaultActionOutput'>loading...</span>-->
                         </font>
                         <div id='defaultActionInputGroup' hidden='true'>
                           <input type='button' value='callDefaultAction' onClick='callDefaultAction()'>
@@ -89,9 +86,9 @@
                     <span id='CBDDefaultActionTriggerTime'></span>
                     </td>
                     <td id='CBDDefaultTimeoutLengthGroup' align='center'>
-                      Time: <br>
-                        <span id="CBDDefaultTimeoutLength"></span>
-                        <form id="delayDefaultActionForm" hidden='true'>
+                      <!--Time: <br>
+                        <span id="CBDDefaultTimeoutLength"></span>-->
+                   <br><br> <form id="delayDefaultActionForm" hidden='true'>
                           <input type='button' value='delayDefaultAction' onClick='delayDefaultRelease()'>
                         </form>
                     </td>
@@ -99,20 +96,19 @@
         </table>
         </td></tr>
         <tr>
-            <td width='50%' align='center'>
-                Architect:<br><span id='CBDlicensedArchitectOutput'>loading...</span>
+            <td color='white' width='25%' align='center'>
+                <!--<br><span id='CBDlicensedArchitectOutput'>loading...</span>
             </td>
             <td width='50%' align='center'>
-                Associate:<br>
-                <span id='CBDRecipientOutput'>loding...</span>
+                <br><span id='CBDRecipientOutput'>loading...</span>-->
                 <div id='commitInputGroup' hidden='true'><button onclick="callCommit()">Commit to Contract</button></div>
             </td>
         </tr>
         <tr>
             <td align='center'>
-                Architect's Statements:<br><br>
+                Architect<br><br>
                 <div id='updatelicensedArchitectStringInputGroup' hidden='true'>
-    				<button id='licensedArchitectStringUpdateStartButton' onclick="startlicensedArchitectStringUpdate()">Chat</button><br><br>
+    				<button id='licensedArchitectStringUpdateStartButton' onclick="startlicensedArchitectStringUpdate()">Communicate</button><br><br>
     				<textarea id='licensedArchitectMessageUpdateTextarea' rows='15' cols='80' hidden='true'></textarea><br>
     				<button id='licensedArchitectStringUpdateCommitButton' hidden='true' onClick="commitlicensedArchitectMessageUpdate()">Log Statement</button><br><br>
     				<button id='licensedArchitectStringUpdateCancelButton' hidden='true' onClick="cancellicensedArchitectStringUpdate()">Cancel</button>
@@ -121,23 +117,63 @@
             </td>
    
             <td align='center'>
-                Associate's Statements:<br><br>
+                <br><br>
+                Associate<br><br>
                 <div id='updateRecipientStringInputGroup' hidden='true'>
-    				<button id='recipientStringUpdateStartButton' onclick="startRecipientStringUpdate()">Chat</button><br><br>
+                    <button id='recipientStringUpdateStartButton' onclick="startRecipientStringUpdate()">Communicate</button><br><br>
     				<textarea id='associateMessageUpdateTextarea' rows='15' cols='80' hidden='true'></textarea><br>
     				<button id='recipientStringUpdateCommitButton' hidden='true' onClick="commitAssociateMessageUpdate()">Log Statement</button><br><br>
     				<button id='recipientStringUpdateCancelButton' hidden='true' onClick="cancelRecipientStringUpdate()">Cancel</button>
-    			</div>
+                </div>
+                <br><br>
+                <font color='white'>You get <span id='CBDBalanceOutput' text='Submit'><br>
+                        <br><span>loading...</font></small><br>
+                <form action="/action_page.php">
+                    <p><font size='small' color = 'white'>and your entry on the blockchain.</font></p><br><br><br>
+                    <input type="file" name="fileUpload" accept="image/*">
+                    <br>
+                    <br>
+                    Entry Title: <input type="text" name="lname">
+                    <br>
+                    <br>
+                                                         
+                    <input type="submit">
+                  </form>
+
+
+                  
+                  
+
+
+
+
+
+
+
+
+
+
                 <div id='CBDRecipientStringOutput' align='left'></div>
             </td>
         </tr>
     </table>
     <br>
-    <div class="container">
+
+      <div class="container">
       <ul class="list-group">
       </ul>
     </div>
     </div>
-  </body>
-  </body>
+
+
+<br><br><br>
+
+<script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js"></script><div class="coinmarketcap-currency-widget" data-currencyid="1027" data-base="CAD" data-secondary="USD" data-ticker="true" data-rank="false" data-marketcap="false" data-volume="false" data-stats="CAD" data-statsticker="false"></div>
+
+
+<br>
+<br>
+<br>
+    
+    </body>
 </html>

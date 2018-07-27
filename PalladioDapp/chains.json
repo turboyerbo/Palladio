@@ -603,6 +603,46 @@
       "0x3b319af98ca4b8974c88b59427a85d9faf25d7fe051375b359e10c07acc1d380": {
         "name": "PalladioCadToken",
         "address": "0xf5106effc18725350226236b730dd264e88aba13"
+      },
+      "0xbeceaea5f3152cc5af91069b5b74f22821603ee7143d82dcbf07b9e35df185bb": {
+        "name": "CBDContractFactory",
+        "address": "0x306d9df3a8aeaf9e0b1274627b74a7eb6289a242"
+      },
+      "0xcfbccda1026c3dc1372daf209bc848eaf6d7822dde7973a6e13a6996be2a75d2": {
+        "name": "PalladioCadToken",
+        "address": "0x6f532ddf89863c9bf3ccfba65f06a4fe6fd510f9"
+      },
+      "0x1776795f3b4c57f4209afb0fce685b169e4972780001cd6868212730fe8ba7a1": {
+        "name": "CBDContractFactory",
+        "address": "0xc75344ecfa34d725bf541b3d60dab331a4e0bc7a"
+      },
+      "0x3053a763a123dc72835e2d927ba6b59307e741134db17cb9bad378e4555b7b19": {
+        "name": "PalladioCadToken",
+        "address": "0x535d2e12aa7af36e15af7529119c3709dba8b379"
+      },
+      "0xdb7b2fd4373e0f8b2d9d14c17c281744522f9a7c4d5eeee8acc3a6af18f656cb": {
+        "name": "CBDContractFactory",
+        "address": "0x5326729fb5486bf68b5e98282b152dd0282ceb8f"
+      },
+      "0xd96bb312ab143f81c4207582c94ca6e38b7299f4845994ab13b2f6abbe4ffaa9": {
+        "name": "PalladioCadToken",
+        "address": "0x87ddd02e696a4632d32d08b13d6c8b797fe73851"
+      },
+      "0x63d1b4dca02cc514eb18f55a79de5cddfebbeb0332e148f5d273107b85bf6f82": {
+        "name": "CBDContractFactory",
+        "address": "0x324c8a3a09d36d35cd4badd0065acee248a54618"
+      },
+      "0xb9d5ca0297415cd7d90de9243433daac5cefc79aea3f7d9e70af852ab2c76ba3": {
+        "name": "PalladioCadToken",
+        "address": "0x51c305025d6a9d7a5bad1ce0e990743f5faa4ef6"
+      },
+      "0x80dcefc700d75006f2e9eaf67da777490d660f3335c509cf2e6b0949894d4cb0": {
+        "name": "CBDContractFactory",
+        "address": "0x548c3ccb2f0ca666c431baf03de35f0a73169623"
+      },
+      "0xf29be31a4496fa75378a01495e1b046f0d02648b7405e20381786d3fa1df0ead": {
+        "name": "PalladioCadToken",
+        "address": "0x24c736301c5f451ee6240f16fffe51a63014d19d"
       }
     },
     "name": "testnet"

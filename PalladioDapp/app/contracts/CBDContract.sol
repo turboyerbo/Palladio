@@ -105,7 +105,8 @@ contract CBDContract {
     event Committed(address _associateArchitect);
     event RecordBook(string statement);
     event FundsReleased(uint amount);
-    event FileSubmitted(string fileUpload);
+    event FileSubmitted(string fileUpload); //Associate architect has uploaded file in the committed state.
+    event Uploaded();
     event Closed();
     event Unclosed();
     event AutoreleaseTriggered();
@@ -179,7 +180,7 @@ contract CBDContract {
         return state;
     }
 
-    function getFileSubmitted()
+    function getFileUploaded()
     public
     constant
     returns(string)
@@ -261,18 +262,16 @@ contract CBDContract {
     }
 
 
-// File must uploaded by associate before timer reaches 0.
-
-function fileSubmitted(string fileUpload)
-public
-payable
-inState(State.Committed) {
-{
-    if (string(fileUpload).length == 0)
-    return fileUpload;
-}
-
-
+// **change this function to "fileReadyforVoting"
+    function fileReadyforVote(string fileUpload)
+    public
+    payable
+    inState(State.Committed)
+    {
+        require(autoreleaseTime > 0);  //File must uploaded by associate before timer reaches 0. 
+        Uploaded();
+        }
+  
 
 
 

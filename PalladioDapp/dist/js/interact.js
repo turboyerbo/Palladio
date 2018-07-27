@@ -33,12 +33,12 @@ function onError(err)
   $('#CBDRecipientOutput').text("None")
   $('#CBDlicensedArchitectStringOutput').text("None");
   $('#CBDRecipientStringOutput').text("None");
-  $('#CBDBalanceOutput').text("None");
-  $('#CBDFundsDepositedOutput').text("None");
+  //$('#CBDBalanceOutput').text("None");
+  //$('#CBDFundsDepositedOutput').text("None");
 
-  $('#CBDFundsReleasedOutput').text("None");
-  $('#CBDDefaultActionOutput').text("None");
-  $('#CBDDefaultTimeoutLength').text("None");
+  //$('#CBDFundsReleasedOutput').text("None");
+  //$('#CBDDefaultActionOutput').text("None");
+  $('#CBDDefaultTimeoutLength').hide("None");
   $('#CBDTable').css("background-color", "grey");
 }
 
@@ -80,12 +80,13 @@ function insertInstanceStatsInPage(CBD, address){
   CBD.recipient == '0x0000000000000000000000000000000000000000' ? $('#CBDRecipientOutput').text("None") : $('#CBDRecipientOutput').text(CBD.associateArchitect);
   $('#CBDRecipientStringOutput').text(CBD.recipientString, 'ether');
   $('#CBDBalanceOutput').text(CBD.balance + ' ETH');
-  $('#CBDFundsDepositedOutput').text(CBD.amountDeposited + ' ETH');
-  $('#CBDFundsReleasedOutput').text(CBD.amountReleased + ' ETH');
+  //$('#CBDFundsDepositedOutput').text(CBD.amountDeposited + ' ETH');
+  // $('#CBDFundsReleasedOutput').text(CBD.amountReleased + ' ETH');
 
-  $('#CBDDefaultActionOutput').text(CBD.defaultAction);
-  $('#CBDDefaultTimeoutLength').text(secondsToDhms(CBD.autoreleaseInterval));
+  //$('#CBDDefaultActionOutput').text(CBD.defaultAction);
+ // $('#CBDDefaultTimeoutLength').text(secondsToDhms(CBD.autoreleaseInterval));
   $('#CBDDefaultActionTriggerTime').text(new Date(CBD.autoreleaseTime * 1000).toLocaleString());
+
 
   switch(CBD.state)
   {
@@ -182,9 +183,9 @@ function checkForUserAddresses() {
 function onUserAddressesNotVisible() {
     document.getElementById('userAddress').innerHTML = "Can't find user addresses. If using metamask, are you sure it's unlocked and initialized?<br>";
 }
-function onUserAddressesVisible(account) {
-    document.getElementById('userAddress').innerHTML = "Registered Account: " + account;
-}
+//function onUserAddressesVisible(account) {
+//    document.getElementById('userAddress').innerHTML = "Palladio ID: " + account;
+//}
 
 function recipientStringEditMode(flag) {
 	if (flag) {
@@ -192,14 +193,17 @@ function recipientStringEditMode(flag) {
 		$('#associateMessageUpdateTextarea').show();
 		$('#recipientStringUpdateCommitButton').show();
 		$('#recipientStringUpdateCancelButton').show();
-		$('#CBDRecipientStringOutput').hide();
+    $('#CBDRecipientStringOutput').hide();
+    $('CBDRecipientStringSubmitButton').show();
 	}
 	else {
 		$('#recipientStringUpdateStartButton').show();
 		$('#associateMessageUpdateTextarea').hide();
 		$('#recipientStringUpdateCommitButton').hide();
 		$('#recipientStringUpdateCancelButton').hide();
-		$('#CBDRecipientStringOutput').show();
+    $('#CBDRecipientStringOutput').show();
+    $('CBDRecipientStringSubmitButton').hide();
+    
 	}
 }
 function startRecipientStringUpdate() {
@@ -286,6 +290,18 @@ function addFundsFromForm() {
 	var amount = Number(form.elements.amount.value);
 	callAddFunds(amount);
 }
+
+function callfileUpload() {
+CBDContract.methods.fileReadyforVote().send('name')
+.then(handleFileUploadResult)
+}
+
+function handleFileUploadResult(err, res) {
+    if (err) console.log(err.message);
+}
+
+
+
 function callDefaultAction(){
   CBDContract.methods.callDefaultAction(logCallResult);
 }
