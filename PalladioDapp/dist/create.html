@@ -1,98 +1,156 @@
 <!DOCTYPE html>
 <html>
   <head>
-
-      <meta charset="utf-8">
-      <title>New Contract</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-      <link rel="stylesheet" href="css/common.css">
-    
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-      <script src="https://wallet.metamask.io/metamascara.js"></script>
-  
-    
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/app.css">
+      
   <script src="js/lib/embark.js"></script>
   <script src="js/lib/jquery.js"></script>
   <script src="js/lib/constants.js"></script>
   <script src="js/create.js"></script>
+
   </head>
-<!-- <style>
-    a.groove {border-style: groove;}
-  </style>-->
+  <br>
+  <br>
 
-  <a href='/'>Palladio Home</a><br> 
+  <body> 
+<div id="nav-placeholder"></div>
+<div class="container">
+
+        <div class="well" style="font-size:3.8rem">
+        <!--<p> <a href="https://github.com/turboyerbo">Source code</a><br><br>
+      </div>-->
+      </div>
+        
+        <!-- Navbar -->
+        <div class="top">
+        <div class="bar red card left-align large">
+          <a class="bar-item button hide-medium hide-large right padding-large hover-white large red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+          <a href="index.html" class="bar-item button padding-large white">Home</a>
+          <a href="addArchitect.html" class="bar-item button hide-small padding-large hover-white">Beta!</a>
+          <a href="https://www.toronto.ca/wp-content/uploads/2018/02/8d71-Pre-Application-Form.pdf" class="bar-item button hide-small padding-large hover-white">Architect</a>
+          <a href="getAllCBDs.html" class="bar-item button hide-small padding-large hover-white">Calendar</a>
+          <a href="create.html" class="bar-item button hide-small padding-large hover-white">City Planner</a>
+          <a href="https://www.toronto.ca/city-government/planning-development/application-forms-fees/building-toronto-together-a-development-guide/site-plan-control-applications/" class="bar-item button hide-small padding-large hover-white">About</a>
+          <!--<a href="http://palladio.io/tools.html" class="bar-item button padding-large">How it Works</a>-->
+          
+        <!--  <a href="http://palladio.io/how-it-works.html" class="bar-item button hide-small padding-large hover-white">About us</a> -->
+      
+        </div>
+        <!-- Navbar on small screens -->
+        <div id="navDemo" class="bar-block white hide hide-large hide-medium large">
+          <a href="addArchitect.html" class="bar-item button padding-large">Beta!</a>
+          <a href="https://www.toronto.ca/wp-content/uploads/2018/02/8d71-Pre-Application-Form.pdf" class="bar-item button hide-small padding-large hover-white">Architect</a>
+          <a href="getAllCBDs.html" class="bar-item button padding-large">Calendar</a>
+          <a href="create.html" class="bar-item button padding-large">City Planner</a>
+          <a href="https://www.toronto.ca/city-government/planning-development/application-forms-fees/building-toronto-together-a-development-guide/site-plan-control-applications/" class="bar-item button hide-small padding-large hover-white">About</a>
+          <!--<a href="http://palladio.io/tools.html" class="bar-item button padding-large">How it Works</a>-->
+         <!-- <a href="http://palladio.io/tools.html" class="bar-item button padding-large">How it Works</a>-->
+        </div>
+        </div>  
+        <br>
+        <br>
+        <br>
+        <br>
+        <h2>Schedule a Consultation</h2>
+        <a href="https://metamask.io/">
+            <img border="0" src="https://metamask.io/img/metamask.png" width="16" height="15"><font size='small'></font>     Connect with Metamask</a><br><br><br>
+
+<!--City Planner-->
+    <select id='architectAccount' name='architectAccount'>
+            <option value="0"> - City Planner - </option>
+           </select><br><br>   
+
+<!--Commit Ethereum Payment
+    <input id = 'paymentAmountInput' name='paymentAmountInput' type='text'  placeholder='Ether' size='7'><br>
+    <a target="_blank" href="">Payment</a><br><br>-->
   
-  <body class='container'><br>
+  <!--Meeting Duration-->                
+    <div>
+        <select id='defaultTimeoutLengthInHoursInput' name='defaultTimeoutLengthInHoursInput'>
+            <option value="0"> - Duration - </option>
+            <option value="1">1 hours</option>
+            <option value="2">2 hours</option>
+            <option value="3">3 hours</option>
+            <option value="4">4 hours</option>
+         </select><br><br>
+        </div>
 
-  <h3>Tools for Architects</h3><br>
-  <select id="architectAccount"></select><br>
-  <a target="_blank" href="https://metamask.io">Web3</a><br><br>
 
-  <div>
-  <select id='defaultTimeoutLengthInHoursInput' name='defaultTimeoutLengthInHoursInput'>
-      <option value="0">Select TIME:</option>
-      <option value="1">2 hours</option>
-      <option value="2">4 hours</option>
-      <option value="3">6 hours</option>
-      <option value="4">8 hours</option>
-   </select>
-  </div>
-
+<!--Meeting Topic-->   
+    
+<select id="category"><br><br>
+      <option value="0"> - Topic -</option>
+      <option value="1">Elevations</option>
+      <option value="2">Accessibility</option>
+      <option value="3">Arborist/Tree Preservation</option>
+      <option value="4">Archaeological Assessment</option>
+      <option value="5">Architecture Control Guidelines</option>
+      <option value="6">Avenue Segment Review Study</option>
+      <option value="7">Boundary Plan of Survey</option>
+      <option value="8">Community Services and Facilities Studies</option>
+      <option value="9">Computer Generated Building Mass Model</option>
+      <option value="10">Concept Site and Landscape Plan</option>
+      <option value="11">Construction Management Plan</option>
+      <option value="12">Contaminated Site Assessment/Environmental Site Assessment</option>
+      <option value="13">Context Plan</option>
+      <option value="14">Draft Official Plan Amendment</option>
+      <option value="15">Draft Plan of Condominium</option>
+      <option value="16">Draft Plan of Subdivision</option>
+      <option value="17">Draft Zoning By-Law Amendment (text and schedule)</option>
+      <option value="18">Energy Modeling Guidelines</option>
+      <option value="19">Energy Strategy</option>
+      <option value="20">Environmental Impact Strategy</option>
+      <option value="21">Erosion/Sediment Control Plan</option>
+      <option value="22">Floor Plans</option>
+      <option value="23">Erosion/Sediment Control Plan</option>
+      <option value="24">Geotechnical Study/Hydrological Review</option>
+      <option value="25">Heritage Impact Assessment/Conservation Strategy</option>
+      <option value="26">Housing Issues Report</option>
+      <option value="27">Landscape and Lighting Plan</option>
+      <option value="28">Loading Study</option>
+      <option value="29">Natural Heritage Impact Study</option>
+      <option value="30">Noise Impact Study</option>
+      <option value="31">Parking Study</option>
+      <option value="32">Pedestrian Level Wind Study</option>
+      <option value="33">Perspective Drawing (required for +4,000 sq.m</option>
+      <option value="34">Planning Rationale</option>
+      <option value="35">Public Consultation Plan</option>
+      <option value="36">Public Utilities Plan</option>
+      <option value="37">Roof Study</option>
+      <option value="38">Servicing Report</option>
+      <option value="39">Site Grading Plan</option>
+      <option value="40">Site Plan</option>
+      <option value="41">Site Building Elevations</option>
+      <option value="42">Site Building Sections</option>
+      <option value="43">Stormwater Management Report</option>
+      <option value="44">Subdivision Concept Plan</option>
+      <option value="45">Sun/Shadow Study</option>
+      <option value="46">Topographic Survey</option>
+      <option value="47">Toronto Green Standard Checklist</option>
+      <option value="48">Traffic Operations Assessment</option>
+      <option value="49">Transportation Impact Study</option>
+      <option value="50">Tree Preservation Plan</option>
+      <option value="51">Underground Garage Plans</option>
+      <option value="52">Urban Design Guidelines</option>
+      <option value="53">Vibration Study</option>
+    </select>
 <br><br>
 
- <select id="category"><br>
-      <option>CAD to Revit</option>
-      <!--<option>Programming*</option>
-      <option>Site Analysis*</option>
-      <option>Schematic Design*</option>
-      <option>Engineering System Coordination*</option>
-      <option>Building Cost Analysis*</option>
-      <option>Code Research*</option>
-      <option>Design Development*</option>
-      <option>Construction Documents*</option>
-      <option>Specifications and Material Research*</option>
-      <options>Documents Checking and Coordination*</options>-->
-  </select><br>
+<!--Description-->
 
- <a target="_blank" href="http://www.oaa.on.ca/images/docs/1328214720_CERB-3720hours.pdf">Record</a><br><br>
-  
+<br><textarea id='description' name='description' cols='80' rows='5' placeholder="Brief description about the issues to be covered during the online consultation."></textarea><br><br>
 
-<button onclick="myFunction()">File</button><br>
-
-<p id="description" class='description'></p>
-
-<script>
-    function myFunction() {
-        var description;
-        var file = prompt("Paste the DWG link:", "www.dropbox.com/dwg");
-        if (file == null || file == "") {
-            description = "Link not found.";
-        } else {
-            description = file;
-        }
-        document.getElementById("description").innerHTML = description;
-    }
-    </script>
+<!--Link to Calendar-->
+<a target="_blank" href="getAllCBDs.html">Browse Calendar</a><br><br>
     
-    <a target="_blank" href="https://www.autodesk.com/redshift/3-steps-to-linking-dwg-files-into-revit/">Guide</a><br><br>
+<center> <input id="onCreateCBDBtn" type='submit' value='Create Event' onclick="useCBDFormInput()"> </center>
+    <div id='outputDiv'></div>
     <br><br>
-    <input id = 'paymentAmountInput' name='paymentAmountInput' type='text'  placeholder='Ether' size='7'><br>
-    <a target="_blank" href="">Payment</a><br><br>
-    <br><br><br>
-
-    <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js"></script>
-    <div class="coinmarketcap-currency-widget" data-currencyid="1027" data-base="CAD"
-    data-secondary="" data-ticker="false" data-rank="false" data-marketcap="false" 
-    data-volume="false" data-stats="USD" data-statsticker="false"><br></div><br><br>
-
-    <input id="onCreateCBDBtn" type='submit' value='Post on the blockchain' onclick="useCBDFormInput()">
-    <div id='outputDiv'></div><br><br><br>
-
-   <h3> <a href='/getAllCBDs.html'>See your post on the platform</a></h3><br><br><br>
-  
+    <br><br>
+    <br><br>
+    
   </body>
-
 </html>
-

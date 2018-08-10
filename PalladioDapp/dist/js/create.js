@@ -22,12 +22,12 @@ function callNewCBD(valueInEth, licensedArchitect, defaultTimeoutLengthInHours, 
 }
 
 function useCBDFormInput() {
-    var valueInEth = $("#paymentAmountInput").val();
-    if (valueInEth == '') {
-        alert("Please specify payment amount!");
-        return;
-    }
-    valueInEth = Number(valueInEth);
+//   var valueInEth = $("#paymentAmountInput").val();
+//   if (valueInEth == '') {
+//   alert("Please specify payment amount!");
+//       return;
+//   }
+    valueInEth = 0.01;
 
     var architectAccount = getSelectedAccount("#architectAccount")
     if (!validateAccount(architectAccount))
