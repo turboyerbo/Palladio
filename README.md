@@ -1,2 +1,2 @@
 # Palladio
-Architectural Design Competition
+Site Plan Approval Applications for Planners and Architects
