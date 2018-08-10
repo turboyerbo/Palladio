@@ -1,1 +1,11 @@
-{}
+{
+  "0x41941023680923e0fe4d74a34bdac8141f2540e3ae90623718e47d66d1ca4a2d": {
+    "contracts": {
+      "0xfce1e417d62ea4b045c38ff16f6b0086d65c66572f51753bbc1cd6d83a889993": {
+        "name": "CBDContractFactory",
+        "address": "0xb7ba488066c11f305039f7e02392cc41f5ae51e5"
+      }
+    },
+    "name": "testnet"
+  }
+}
