@@ -4,6 +4,10 @@
       "0xfce1e417d62ea4b045c38ff16f6b0086d65c66572f51753bbc1cd6d83a889993": {
         "name": "CBDContractFactory",
         "address": "0xb7ba488066c11f305039f7e02392cc41f5ae51e5"
+      },
+      "0x6527c5d9104d16637dc5d56b3627d7b59f55daf25dd1bba2c4f881d0b8f4e14d": {
+        "name": "PalladioCadToken",
+        "address": "0xd8653aa537b5e5333927db9709ca997d1e727493"
       }
     },
     "name": "testnet"
