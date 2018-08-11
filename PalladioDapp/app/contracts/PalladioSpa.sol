@@ -9,7 +9,7 @@ import "./EIP20Interface.sol";
 import "./Owned.sol";
 import "./CBDContract.sol";
 
-contract PalladioCadToken is EIP20Interface, Owned {
+contract PalladioSpaToken is EIP20Interface, Owned {
 
     uint256 constant private MAX_UINT256 = 2**256 - 1;
     mapping (address => uint256) public balances;
@@ -22,19 +22,19 @@ contract PalladioCadToken is EIP20Interface, Owned {
     */
     string public name;                   //fancy name: eg Simon Bucks
     uint256 public decimals;                //How many decimals to show.
-    string public symbol;                 //An identifier: eg SBX
+    string public symbol;                 //An identifier: eg SPA
 
     uint256 public commitThreshold;
 
-    function PalladioCadToken(
+    function PalladioSpaToken(
     ) public {
         totalSupply = 50000000 * (10**18);              // Update total supply
         balances[msg.sender] = totalSupply;             // Give the creator all initial tokens
-        name = "PalladioCad";                         // Set the name for display purposes
+        name = "PalladioSpa";                         // Set the name for display purposes
         decimals = 18;                                  // Amount of decimals for display purposes
-        symbol = "PCAD";                                 // Set the symbol for display purposes
+        symbol = "PSpa";                                 // Set the symbol for display purposes
 
-        commitThreshold = 5 * (10**18);
+        commitThreshold = 1 * (10**18);
 
         // TESTING - Automatically transfer 5 transactions to my assocuate account
         address associate = 0x0F990402719D0C99600Bb725C04945526731F7d1;

@@ -29,8 +29,8 @@ function buildCBDRow(cbdObject, index){
   $(`.state:eq(${index})`).text(CBD_STATES[cbdObject.state]);
   $(`.contractAddress:eq(${index})`).text("View Consultation");
   $(`.contractAddress:eq(${index})`).attr("href", `interact.html?contractAddress=${cbdObject.address}`);
- //  $(`.licensedArchitectAddress:eq(${index})`).html(`\n <a href='${window.etherscanURL}${cbdObject.licensedArchitect}'>${cbdObject.licensedArchitect}</a>`);
-  // $(`.licensedArchitectAddress:eq(${index})`).text(cbdObject.licensedArchitect);
+ //  $(`.licensedPlannerAddress:eq(${index})`).html(`\n <a href='${window.etherscanURL}${cbdObject.licensedPlanner}'>${cbdObject.licensedPlanner}</a>`);
+  // $(`.licensedPlannerAddress:eq(${index})`).text(cbdObject.licensedPlanner);
   if(cbdObject.associateArchitect !== "0x0000000000000000000000000000000000000000"){
     // $(`.associateArchitect:eq(${index})`).text("associateArchitect: \n" + );
   $(`.associateArchitect:eq(${index})`).html(`Associate: \n <a href='${window.etherscanURL}${cbdObject.associateArchitect}'>${cbdObject.associateArchitect}</a>`);

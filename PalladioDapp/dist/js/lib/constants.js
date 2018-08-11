@@ -109,10 +109,10 @@ function getCurrentTime(fn) {
 
 function parseCBDState(state, address)
 {
-    //(licensedArchitect, recordBook, description, state, associateArchitect, this.balance, serviceDeposit, amountDeposited, amountReleased, autoreleaseInterval, autoreleaseTime);
+    //(licensedPlanner, recordBook, description, state, associateArchitect, this.balance, serviceDeposit, amountDeposited, amountReleased, autoreleaseInterval, autoreleaseTime);
     var cbdObject = {};
     cbdObject['address'] = address;
-    cbdObject['licensedArchitect'] = state[0].toString();
+    cbdObject['licensedPlanner'] = state[0].toString();
     cbdObject['recordBook'] = state[1].toString();
     cbdObject['initialStatement'] = state[2].toString();
     cbdObject['state'] = Number(state[3]);

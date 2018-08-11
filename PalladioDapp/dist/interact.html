@@ -49,7 +49,7 @@
             <table width='80%'>
                 <tr width='80%'>
                     <td width='50%' align='center'>
-                        <form id='licensedArchitectFundsInputGroup' hidden='true'>
+                        <form id='licensedPlannerFundsInputGroup' hidden='true'>
                             <input type='text' name='amount' size=3><br>
     						            <input type='button' value='Add Funds' onClick='addFundsFromForm()'></font>
                         </form>
@@ -100,24 +100,24 @@
         </td></tr>
         <tr>
             <td width='50%' align='center'>
-                Architect:<br><span id='CBDlicensedArchitectOutput'>loading...</span>
+               City Planner:<br><span id='CBDlicensedPlannerOutput'>loading...</span>
             </td>
             <td width='50%' align='center'>
-                Associate:<br>
+                Applicant:<br>
                 <span id='CBDRecipientOutput'>loding...</span>
                 <div id='commitInputGroup' hidden='true'><button onclick="callCommit()">Commit to Contract</button></div>
             </td>
         </tr>
         <tr>
             <td align='center'>
-                Architect's Statements:<br><br>
-                <div id='updatelicensedArchitectStringInputGroup' hidden='true'>
-    				<button id='licensedArchitectStringUpdateStartButton' onclick="startlicensedArchitectStringUpdate()">Chat</button><br><br>
-    				<textarea id='licensedArchitectMessageUpdateTextarea' rows='15' cols='80' hidden='true'></textarea><br>
-    				<button id='licensedArchitectStringUpdateCommitButton' hidden='true' onClick="commitlicensedArchitectMessageUpdate()">Log Statement</button><br><br>
-    				<button id='licensedArchitectStringUpdateCancelButton' hidden='true' onClick="cancellicensedArchitectStringUpdate()">Cancel</button>
+                Planner's Statements:<br><br>
+                <div id='updatelicensedPlannerStringInputGroup' hidden='true'>
+    				<button id='licensedPlannerStringUpdateStartButton' onclick="startlicensedPlannerStringUpdate()">Chat</button><br><br>
+    				<textarea id='licensedPlannerMessageUpdateTextarea' rows='15' cols='80' hidden='true'></textarea><br>
+    				<button id='licensedPlannerStringUpdateCommitButton' hidden='true' onClick="commitlicensedPlannerMessageUpdate()">Log Statement</button><br><br>
+    				<button id='licensedPlannerStringUpdateCancelButton' hidden='true' onClick="cancellicensedPlannerStringUpdate()">Cancel</button>
     			</div>
-                <div id='CBDLicensedArchitectStringOutput' align='left'></div>
+                <div id='CBDlicensedPlannerStringOutput' align='left'></div>
             </td>
    
             <td align='center'>

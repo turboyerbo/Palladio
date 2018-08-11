@@ -4,14 +4,14 @@ function onError(err) {
     $('#onCreateCBDBtn')[0].disabled = false
 }
 
-function callNewCBD(valueInEth, licensedArchitect, defaultTimeoutLengthInHours, commitRecordBook, description) {
+function callNewCBD(valueInEth, licensedPlanner, defaultTimeoutLengthInHours, commitRecordBook, description) {
     var valueInWei = web3.utils.toWei(valueInEth, 'ether');
     var autoreleaseInterval = defaultTimeoutLengthInHours*60*60;
 
     $('#onCreateCBDBtn')[0].disabled = true
     $("#outputDiv").html("Contract submitted to the blockchain (view Contract on Etherscan)");
     CBDContractFactory.methods.newCBDContract(autoreleaseInterval, commitRecordBook, description)
-        .send({'from':licensedArchitect,'value': valueInWei})
+        .send({'from':licensedPlanner,'value': valueInWei})
         .then(function(result){
             $('#onCreateCBDBtn')[0].disabled = false
             $("#outputDiv").html("Contract submitted successfully (updating number of live contracts)");
@@ -29,8 +29,8 @@ function useCBDFormInput() {
 //   }
     valueInEth = 0.01;
 
-    var architectAccount = getSelectedAccount("#architectAccount")
-    if (!validateAccount(architectAccount))
+    var plannerAccount = getSelectedAccount("#plannerAccount")
+    if (!validateAccount(plannerAccount))
         return
 
     var commitRecordBook = $("#category").val();
@@ -53,7 +53,7 @@ function useCBDFormInput() {
             return;
         }
     }
-    callNewCBD(valueInEth, architectAccount, defaultTimeoutLengthInHours, commitRecordBook, description);
+    callNewCBD(valueInEth, plannerAccount, defaultTimeoutLengthInHours, commitRecordBook, description);
 }
 
-populateSelectWithAccounts("#architectAccount")
+populateSelectWithAccounts("#plannerAccount")
