@@ -20,7 +20,7 @@
     <script type="text/javascript" src="js/lib/constants.js"></script>
     <script src="js/interact.js"></script>
   </head>
-  <br><a href='/'>Palladio Home</a>
+
   <body class='container'><br><br> 
   <body>
         <div id="nav-placeholder"></div>
@@ -70,13 +70,15 @@
               Contract: <br><br>
 
               <span color="#000000" class="insertAddress">loading...</span><br><br>
-              <small><a href='' id="etherscanLink" >View on etherscan.io</a></small><br><br>
+              <!--<small><a href='' id="etherscanLink" >View on etherscan.io</a></small><br><br>-->
 
             <small>This Contract is <span id='CBDInfoOutput'>loading...</span><br>with a value of
             <font color='#000000'><span id='CBDBalanceOutput'><span>loading...</font></small><br>
             <br>
+
+<!--Cancel and Recover Funds (Licensed Planner)-->
     		<form id='recoverFundsInputGroup' hidden='true'>
-    		<input type='button' value='Cancel CBD and Recover Funds' onClick='callRecoverFunds()'>
+    		<input type='button' value='Cancel Consultation' onClick='callRecoverFunds()'>
     		</form>
             <br>
             <table width='80%'>
@@ -85,16 +87,23 @@
                         <form id='licensedPlannerFundsInputGroup' hidden='true'>
                             <input type='text' name='amount' size=3><br>
     						            <input type='button' value='Add Funds' onClick='addFundsFromForm()'></font>
-                        </form>
+            </form>
             </td>
-                    <td>
-                        <table width='80%'>
-                            <tr width='80%'>
-                               <small><td align='right'><span id='CBDFundsDepositedOutput'>loading...</span> </td><br>
-                                <td> deposited</td>
-                                <td align='right'><font><span id='CBDFundsReleasedOutput'>loading...</span></font> </td><br>
-                                <td> released</td>
-                            </small>
+                <td>
+                    <table width='80%'>
+                <tr width='80%'>
+                                <small><td align='right'><span id='CBDFundsDepositedOutput'>loading...</span> 
+            </td><br>
+                <td> deposited
+            </td>
+ <!--               <td align='right'><font><span id='CBDFundsReleasedOutput'>loading...</span></font> 
+             </td><br>
+ -->
+ <!--               <td> released
+ 
+                </td>
+  -->
+                       </small>
                             </tr>
                             </tr><tr>
                                 <td> </td>
@@ -143,10 +152,10 @@
         </tr>
         <tr>
             <td align='center'>
-                Planner's Statements:<br><br>
+                Planner<br><br>
                 <div id='updatelicensedPlannerStringInputGroup' hidden='true'>
     				<button id='licensedPlannerStringUpdateStartButton' onclick="startlicensedPlannerStringUpdate()">Chat</button><br><br>
-    				<textarea id='licensedPlannerMessageUpdateTextarea' rows='15' cols='80' hidden='true'></textarea><br>
+    				<textarea id='licensedPlannerMessageUpdateTextarea' rows='15' cols='15' hidden='true'></textarea><br>
     				<button id='licensedPlannerStringUpdateCommitButton' hidden='true' onClick="commitlicensedPlannerMessageUpdate()">Log Statement</button><br><br>
     				<button id='licensedPlannerStringUpdateCancelButton' hidden='true' onClick="cancellicensedPlannerStringUpdate()">Cancel</button>
     			</div>
@@ -154,10 +163,10 @@
             </td>
    
             <td align='center'>
-                Associate's Statements:<br><br>
+                Associate:<br><br>
                 <div id='updateRecipientStringInputGroup' hidden='true'>
     				<button id='recipientStringUpdateStartButton' onclick="startRecipientStringUpdate()">Chat</button><br><br>
-    				<textarea id='associateMessageUpdateTextarea' rows='15' cols='80' hidden='true'></textarea><br>
+    				<textarea id='associateMessageUpdateTextarea' rows='15' cols='15' hidden='true'></textarea><br>
     				<button id='recipientStringUpdateCommitButton' hidden='true' onClick="commitAssociateMessageUpdate()">Log Statement</button><br><br>
     				<button id='recipientStringUpdateCancelButton' hidden='true' onClick="cancelRecipientStringUpdate()">Cancel</button>
     			</div>

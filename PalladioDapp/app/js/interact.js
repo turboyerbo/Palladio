@@ -299,7 +299,7 @@ function handleUpdateAssociateMessageResult(err, res) {
 }
 
 function callLogAssociateMessage(message) {
-    CBDContract.methods.logassociateArchitectStatement(message).send({"from":web3.eth.defaultAccount})
+    CBDContract.methods.logAssociateMessage(message).send({"from":web3.eth.defaultAccount})
     .then(handleUpdateAssociateMessageResult);
 }
 function handleUpdatelicensedPlannerMessageResult(err, res) {
@@ -307,7 +307,7 @@ function handleUpdatelicensedPlannerMessageResult(err, res) {
 }
 
 function callLoglicensedPlannerMessage(message) {
-  CBDContract.methods.loglicensedPlannerStatement(message).send({"from":web3.eth.defaultAccount})
+  CBDContract.methods.loglicensedPlannerMessage(message).send({"from":web3.eth.defaultAccount})
   .then(handleUpdateLicensedMessageResult);
 }
 
@@ -340,11 +340,11 @@ function insertAllInChat(eventArray){
   eventArray.forEach(function(eventObject){
     who = "Contract"
     text = eventObject.event;
-    if (eventObject.event == "licensedPlannerStatement") {
+    if (eventObject.event == "licensedPlannerMessage") {
       who = "Planner"
       text = eventObject.returnValues[0]
     }
-    else if (eventObject.event == "AssociateArchitectStatement") {
+    else if (eventObject.event == "AssociateArchitectMessage") {
       who = "Associate"
       text = eventObject.returnValues[0]
     }
