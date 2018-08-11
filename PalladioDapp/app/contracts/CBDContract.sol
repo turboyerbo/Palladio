@@ -1,33 +1,33 @@
 pragma solidity ^0.4.17;
 
 import "./CBDContractFactory.sol";
-import "./PalladioCad.sol";
+import "./PalladioSpa.sol";
 
-//*Collaborative Blockchain Design (CBD) begins when the Licensed Architect (Ontario Association of Architects)is: 
+//*Collaborative Blockchain Design (CBD) begins when the Licensed Planner (Ontario Association of Planners)is: 
 // (1) digitally-verified using their unique Public Key assigned by the Palladio; 
 // (2) creates an open call for submissions; and 
 // (3) defines the inital value of the contract.
 //
-//*A verified Associate "intern" Architect can join the contract, in order to submit work annonymously when
-// The Associacte Architect has:
+//*A verified Associate "intern" Planner can join the contract, in order to submit work annonymously when
+// The Associacte Planner has:
 
-// (1) been accredicted by the Canadian Architecture Certification Board (CACB); 
+// (1) been accredicted by the Canadian Plannerure Certification Board (CACB); 
 // (2) authenticated their identity using their unique CACB Public Key to access the form;
-// (3) commits to the contract by making a deposit with PalladioCAD Tokens (PCAD)
+// (3) commits to the contract by making a deposit with PalladioSpa Tokens (PSpa)
 
 // The constructor is payable, so the contract can be instantiated with initial funds.
 // In addition, anyone can add more funds to the Payment by calling addFunds.
 
-// The Licensed Architect controls most functions, but
-// the lLicensed Architect can never recover the payment, so they should pay a small disposable amount.
+// The Licensed Planner controls most functions, but
+// the lLicensed Planner can never recover the payment, so they should pay a small disposable amount.
 //
 // If he calls the recover() function before anyone else commit() the funds will be returned, minus the 2% fee.
 
 // If the CBD is in the Open state, ANYONE can join the contract anonymously by a verified professional. 
-// Only a digitally-verified Associate Architect can receive payment in the commited state.
-// The Associate Architect MUST be verified or their submission will not be posted and the contract remains OPEN.
+// Only a digitally-verified Associate Planner can receive payment in the commited state.
+// The Associate Planner MUST be verified or their submission will not be posted and the contract remains OPEN.
 
-// An Associate Architect is digitally-verified, instantly, their Record Book Experience Form 
+// An Associate Planner is digitally-verified, instantly, their Record Book Experience Form 
 // is digitally signed with a time-stamp, and the contract state changes from "open()" to "commit()"
 // for their eventual license review. 
 
@@ -36,8 +36,8 @@ import "./PalladioCad.sol";
 // Any associate can join the contract once it's been set via commit().
 
 // In the committed state,
-// the Licensed Architect can at any time choose to release any amount of PL1 Tokens.
-// any Associate Architect and any amount of funds.*
+// the Licensed Planner can at any time choose to release any amount of PL1 Tokens.
+// any Associate Planner and any amount of funds.*
 
 contract CBDContract {
 
@@ -63,9 +63,9 @@ contract CBDContract {
     string public recordBook;
     string public initialStatement;
 
-    //CBD will start with a licensedArchitect but no associateArchitect (associateArchitect==0x0)
-    address public licensedArchitect;
-    address public associateArchitect;
+    //CBD will start with a licensedPlanner but no associatePlanner (associatePlanner==0x0)
+    address public licensedPlanner;
+    address public associatePlanner;
             
     //Set to true if fundsRecovered is called
     bool recovered = false;
@@ -78,9 +78,9 @@ contract CBDContract {
     uint public autoreleaseInterval;
 
     //Calculated from autoreleaseInterval in commit(),
-    //and recaluclated whenever the licensedArchitect (or possibly the associateArchitect) 
+    //and recaluclated whenever the licensedPlanner (or possibly the associatePlanner) 
     //calls delayhasDefaultRelease()
-    //After this time, auto-release can be called by the associateArchitect.
+    //After this time, auto-release can be called by the associatePlanner.
     uint public autoreleaseTime;
 
     //Most action happens in the Committed state.
@@ -92,14 +92,14 @@ contract CBDContract {
     
     State public state;
     //Note that a CBD cannot go from Committed back to Open, but it can go from Closed back to Committed
-    //(this would retain the committed associateArchitect). Search for Closed and Unclosed events to see how this works.
+    //(this would retain the committed associatePlanner). Search for Closed and Unclosed events to see how this works.
 
-    event Created(address indexed contractAddress, address _licensedArchitect, uint _autoreleaseInterval, string _recordBook);
-    event FundsAdded(address from, uint amount); //The licensedArchitect has added funds to the CBD.
-    event LicensedArchitectStatement(string statement);
-    event AssociateArchitectStatement(string statement);
+    event Created(address indexed contractAddress, address _licensedPlanner, uint _autoreleaseInterval, string _recordBook);
+    event FundsAdded(address from, uint amount); //The licensedPlanner has added funds to the CBD.
+    event LicensedPlannerStatement(string statement);
+    event AssociatePlannerStatement(string statement);
     event FundsRecovered();
-    event Committed(address _associateArchitect);
+    event Committed(address _associatePlanner);
     event RecordBook(string statement);
     event FundsReleased(uint amount);
     event Closed();
@@ -107,7 +107,7 @@ contract CBDContract {
     event AutoreleaseDelayed();
     event AutoreleaseTriggered();
 
-    function CBDContract(address architect, uint _id, uint _autoreleaseInterval, string _recordBook, string _initialStatement)
+    function CBDContract(address Planner, uint _id, uint _autoreleaseInterval, string _recordBook, string _initialStatement)
     payable 
     public
     {
@@ -115,7 +115,7 @@ contract CBDContract {
         id = _id;
         factory = msg.sender;
 
-        licensedArchitect = architect;
+        licensedPlanner = Planner;
         
         recordBook = _recordBook;
 
@@ -126,14 +126,14 @@ contract CBDContract {
         initialStatement = _initialStatement;
 
         if (bytes(initialStatement).length > 0)
-            LicensedArchitectStatement(initialStatement);
+            LicensedPlannerStatement(initialStatement);
 
         if (msg.value > 0) {
-            FundsAdded(architect, msg.value);
+            FundsAdded(Planner, msg.value);
             amountDeposited += msg.value;
         }
 
-        Created(this, licensedArchitect, _autoreleaseInterval, _recordBook);		
+        Created(this, licensedPlanner, _autoreleaseInterval, _recordBook);		
     }
 
     // Allow the factory to reset our index
@@ -152,12 +152,12 @@ contract CBDContract {
         return id;
     }
 
-    function getArchitect()
+    function getPlanner()
     public
     constant
     returns(address)
     {
-        return licensedArchitect;
+        return licensedPlanner;
     }
 
     function getAssociate()
@@ -165,7 +165,7 @@ contract CBDContract {
     constant
     returns(address)
     {
-        return associateArchitect;
+        return associatePlanner;
     }
 
     function getState()
@@ -181,7 +181,7 @@ contract CBDContract {
     constant
     returns(address, string, string, State, address, uint, uint, uint, uint, uint) 
     {
-        return (licensedArchitect, recordBook, initialStatement, state, associateArchitect, this.balance, amountDeposited, amountReleased, autoreleaseInterval, autoreleaseTime);
+        return (licensedPlanner, recordBook, initialStatement, state, associatePlanner, this.balance, amountDeposited, amountReleased, autoreleaseInterval, autoreleaseTime);
     }
 
     function getBalance()
@@ -208,7 +208,7 @@ contract CBDContract {
 
     function recoverFunds()
     public
-    onlylicensedArchitect()
+    onlylicensedPlanner()
     inState(State.Open) 
     {
         recovered = true;
@@ -217,7 +217,7 @@ contract CBDContract {
         owner.removeCBDContract(id);
 
         FundsRecovered();
-        selfdestruct(licensedArchitect);
+        selfdestruct(licensedPlanner);
     }
 
     // An associate can commit
@@ -231,9 +231,9 @@ contract CBDContract {
         // We assume, that having been called from the token contract
         // means that the transfer has been made and it is valid for the
         // originator of this call to become the associate
-        associateArchitect = associate;
+        associatePlanner = associate;
         state = State.Committed;
-        Committed(associateArchitect);
+        Committed(associatePlanner);
 
         autoreleaseTime = now + autoreleaseInterval;
     }
@@ -252,7 +252,7 @@ contract CBDContract {
     function release(uint amount)
     public
     inState(State.Committed)
-    onlylicensedArchitect() 
+    onlylicensedPlanner() 
     {
         internalRelease(amount);
     }
@@ -260,14 +260,14 @@ contract CBDContract {
     function delayAutorelease()
     public
     inState(State.Committed) 
-    onlylicensedArchitect()
+    onlylicensedPlanner()
     isBeforeAutoRelease()
     {
         autoreleaseTime = now + autoreleaseInterval;
         AutoreleaseDelayed();
     }
 
-// Autorelease function will send all funds to Associate Architect
+// Autorelease function will send all funds to Associate Planner
 // Automatically sends 2% (in Wei) to Palladio Address; returns false on failure.
 
     function triggerAutoRelease()
@@ -284,18 +284,18 @@ contract CBDContract {
     ////////////////////////////////////////////////////////
 
     // Chat/logging functions
-    function loglicensedArchitectStatement(string statement)
+    function loglicensedPlannerStatement(string statement)
     public
-    onlylicensedArchitect() 
+    onlylicensedPlanner() 
     {
-        LicensedArchitectStatement(statement);
+        LicensedPlannerStatement(statement);
     }
 
-    function logassociateArchitectStatement(string statement)
+    function logassociatePlannerStatement(string statement)
     public
-    onlyassociateArchitect() 
+    onlyassociatePlanner() 
     {
-        AssociateArchitectStatement(statement);
+        AssociatePlannerStatement(statement);
     }
 
     ////////////////////////////////////////////////////////
@@ -313,7 +313,7 @@ contract CBDContract {
 
         // subtract fee from amount sent
         uint associateAmount = amount - palladioFee;
-        associateArchitect.transfer(associateAmount);
+        associatePlanner.transfer(associateAmount);
 
         amountReleased += amount;
         FundsReleased(amount);
@@ -337,17 +337,17 @@ contract CBDContract {
         _;
     }
 
-    modifier onlylicensedArchitect() {
-        require(msg.sender == licensedArchitect);
+    modifier onlylicensedPlanner() {
+        require(msg.sender == licensedPlanner);
         _;
     }
 
-    modifier onlyassociateArchitect() {
-        require(msg.sender == associateArchitect);
+    modifier onlyassociatePlanner() {
+        require(msg.sender == associatePlanner);
         _;
     }
-    modifier onlylicensedArchitectOrassociateArchitect() {
-        require((msg.sender == licensedArchitect) || (msg.sender == associateArchitect));
+    modifier onlylicensedPlannerOrassociatePlanner() {
+        require((msg.sender == licensedPlanner) || (msg.sender == associatePlanner));
         _;
     }
 

@@ -6,12 +6,12 @@ import "./CBDContract.sol";
 contract CBDContractFactory {
 
     // In order to verify incoming orders are from
-    // licensed architects, we check the address vs
+    // licensed Planners, we check the address vs
     // our saved list of users. (Because we need
-    // to verify existence of the architect, we 
+    // to verify existence of the Planner, we 
     // use a mapping instead of an array)
-    uint numLicensedArchitects;
-    mapping(address => uint) licensedArchitects;
+    uint numLicensedPlanners;
+    mapping(address => uint) licensedPlanners;
 
 
     // contract address array.  Lists all
@@ -25,7 +25,7 @@ contract CBDContractFactory {
     address[] public CBDs;
  
     // The management address is the address that is 
-    // allowed to register new verified architects
+    // allowed to register new verified Planners
     address palladioManagement;
 
     address tokenContract;
@@ -33,7 +33,7 @@ contract CBDContractFactory {
     event NewCBD(address indexed newCBDAddress);
 
     // Constructor sets the address of our management account
-    // This is the only account able to add new licensedArchitects
+    // This is the only account able to add new licensedPlanners
     function CBDContractFactory() public {
         palladioManagement = msg.sender;
     }
@@ -54,26 +54,26 @@ contract CBDContractFactory {
         return tokenContract;
     }
 
-    // Add a new architect to the system.  This architect
+    // Add a new Planner to the system.  This Planner
     // will then be able to register new contracts
-    function registerArchitect(address architect)
+    function registerPlanner(address Planner)
     public
     payable
     fromPalladio()
-    checkArchitect(architect, false)
+    checkPlanner(Planner, false)
     {
         // Skip first value (0 represents null)
-        numLicensedArchitects += 1;
-        licensedArchitects[architect] = numLicensedArchitects;
+        numLicensedPlanners += 1;
+        licensedPlanners[Planner] = numLicensedPlanners;
     }
 
-    // Returns the number of architects registered with Palladio
-    function numArchitects()
+    // Returns the number of Planners registered with Palladio
+    function numPlanners()
     public 
     constant
     returns (uint)
     {
-        return numLicensedArchitects;
+        return numLicensedPlanners;
     }
 
     // Get number of currently active contracts
@@ -86,11 +86,11 @@ contract CBDContractFactory {
     }
 
     // Create a new Collaborative Blockchain Design contract.  
-    // Only a licensed architect is permitted to do this
+    // Only a licensed Planner is permitted to do this
     function newCBDContract(uint autoreleaseInterval, string recordBook, string initialStatement)
     public
     payable
-    checkArchitect(msg.sender, true)
+    checkPlanner(msg.sender, true)
     {
         //pass along any ether to the constructor
         uint nextId = CBDs.length;
@@ -139,10 +139,10 @@ contract CBDContractFactory {
         _;
     }
 
-    // Check if the address passed is registered as an architect
-    modifier checkArchitect(address architect, bool wantArchitect) {
-        bool isArchitect = licensedArchitects[architect] != 0;
-        require(isArchitect == wantArchitect); 
+    // Check if the address passed is registered as an Planner
+    modifier checkPlanner(address Planner, bool wantPlanner) {
+        bool isPlanner = licensedPlanners[Planner] != 0;
+        require(isPlanner == wantPlanner); 
         _;
     }
 

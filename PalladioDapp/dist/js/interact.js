@@ -18,8 +18,8 @@ function onError(err)
   console.log("Error calling CBD method: " + err);
   ////workaournd////////////////////////////////////////////////////////
   console.log("This Contract doesn't exist or was destroyed.")
-  document.getElementById('licensedArchitectFundsInputGroup').hidden = true;
-  document.getElementById('updatelicensedArchitectStringInputGroup').hidden = true;
+  document.getElementById('licensedPlannerFundsInputGroup').hidden = true;
+  document.getElementById('updatelicensedPlannerStringInputGroup').hidden = true;
   document.getElementById('updateRecipientStringInputGroup').hidden = true;
   document.getElementById('commitInputGroup').hidden = true;
   document.getElementById('recoverFundsInputGroup').hidden = true;
@@ -29,9 +29,9 @@ function onError(err)
   $('.insertAddress').text(CBD.address);
   $('#etherscanLink').attr("href", '${window.etherscanURL}${CBD.address}');
   $('#CBDInfoOutput').text("Doesn't exist/Destroyed");
-  $('#CBDlicensedArchitectOutput').text("None")
+  $('#CBDlicensedPlannerOutput').text("None")
   $('#CBDRecipientOutput').text("None")
-  $('#CBDlicensedArchitectStringOutput').text("None");
+  $('#CBDlicensedPlannerStringOutput').text("None");
   $('#CBDRecipientStringOutput').text("None");
   $('#CBDBalanceOutput').text("None");
   $('#CBDFundsDepositedOutput').text("None");
@@ -75,8 +75,8 @@ function insertInstanceStatsInPage(CBD, address){
   $('.insertAddress').text(CBD.address);
   $('#etherscanLink').attr("href", `${window.etherscanURL}${address}`);
   $('#CBDInfoOutput').text(CBD_STATES[CBD.state]);
-  $('#CBDlicensedArchitectOutput').text(CBD.licensedArchitect)
-  $('#CBDlicensedArchitectStringOutput').text(CBD.initialStatement);
+  $('#CBDlicensedPlannerOutput').text(CBD.licensedPlanner)
+  $('#CBDlicensedPlannerStringOutput').text(CBD.initialStatement);
   CBD.recipient == '0x0000000000000000000000000000000000000000' ? $('#CBDRecipientOutput').text("None") : $('#CBDRecipientOutput').text(CBD.associateArchitect);
   $('#CBDRecipientStringOutput').text(CBD.recipientString, 'ether');
   $('#CBDBalanceOutput').text(CBD.balance + ' ETH');
@@ -103,16 +103,16 @@ function insertInstanceStatsInPage(CBD, address){
 
 
 function updateExtraInput(CBD) {
-  var userIslicensedArchitect = (CBD.licensedArchitect == web3.eth.defaultAccount);
-  var isNulllicensedArchitect = (CBD.licensedArchitect == '0x0000000000000000000000000000000000000000');
+  var userIslicensedPlanner = (CBD.licensedPlanner == web3.eth.defaultAccount);
+  var isNulllicensedPlanner = (CBD.licensedPlanner == '0x0000000000000000000000000000000000000000');
   var userIsRecipient = (CBD.associateArchitect == web3.eth.defaultAccount);
   var isNullRecipient = (CBD.associateArchitect == '0x0000000000000000000000000000000000000000');
 
-  document.getElementById('licensedArchitectFundsInputGroup').hidden = !userIslicensedArchitect;
-  document.getElementById('updatelicensedArchitectStringInputGroup').hidden = !userIslicensedArchitect;
+  document.getElementById('licensedPlannerFundsInputGroup').hidden = !userIslicensedPlanner;
+  document.getElementById('updatelicensedPlannerStringInputGroup').hidden = !userIslicensedPlanner;
   document.getElementById('updateRecipientStringInputGroup').hidden = !userIsRecipient;
   document.getElementById('commitInputGroup').hidden = !isNullRecipient;
-	document.getElementById('recoverFundsInputGroup').hidden = !(userIslicensedArchitect && isNullRecipient);
+	document.getElementById('recoverFundsInputGroup').hidden = !(userIslicensedPlanner && isNullRecipient);
   web3.eth.getBlock("latest",
     function(err,res){
       if (err) {
@@ -127,17 +127,17 @@ function updateExtraInput(CBD) {
       document.getElementById('defaultActionInputGroup').hidden = true;
       document.getElementById('delayDefaultActionForm').hidden = true;
       }
-      if(!(userIsRecipient || userIslicensedArchitect)){
+      if(!(userIsRecipient || userIslicensedPlanner)){
         document.getElementById('defaultActionInputGroup').hidden = true;
         document.getElementById('delayDefaultActionForm').hidden = true;
       }
-      else if(CBD.autoreleaseTime > 0 && CBD.autoreleaseTime < currentTime && CBD.state === 1 && (userIsRecipient || userIslicensedArchitect)){
+      else if(CBD.autoreleaseTime > 0 && CBD.autoreleaseTime < currentTime && CBD.state === 1 && (userIsRecipient || userIslicensedPlanner)){
         document.getElementById('CBDDefaultActionTriggerTime').hidden = false;
         document.getElementById('CBDDefaultTimeoutLengthGroup').hidden = false;
         document.getElementById('defaultActionInputGroup').hidden = false;
         document.getElementById('delayDefaultActionForm').hidden = false;
       }
-      else if((CBD.autoreleaseTime > currentTime && CBD.state == 1 && (userIsRecipient || userIslicensedArchitect))){
+      else if((CBD.autoreleaseTime > currentTime && CBD.state == 1 && (userIsRecipient || userIslicensedPlanner))){
         document.getElementById('CBDDefaultActionTriggerTime').hidden = false;
         document.getElementById('CBDDefaultTimeoutLengthGroup').hidden = false;
         document.getElementById('defaultActionInputGroup').hidden = true;
@@ -215,33 +215,33 @@ function commitAssociateMessageUpdate() {
 	recipientStringEditMode(false);
 }
 
-function licensedArchitectStringEditMode(flag) {
+function licensedPlannerStringEditMode(flag) {
 	if (flag) {
-		$('#licensedArchitectStringUpdateStartButton').hide();
-		$('#licensedArchitectMessageUpdateTextarea').show();
-		$('#licensedArchitectStringUpdateCommitButton').show();
-		$('#licensedArchitectStringUpdateCancelButton').show();
-		$('#CBDlicensedArchitectStringOutput').hide();
+		$('#licensedPlannerStringUpdateStartButton').hide();
+		$('#licensedPlannerMessageUpdateTextarea').show();
+		$('#licensedPlannerStringUpdateCommitButton').show();
+		$('#licensedPlannerStringUpdateCancelButton').show();
+		$('#CBDlicensedPlannerStringOutput').hide();
 	}
 	else {
-		$('#licensedArchitectStringUpdateStartButton').show();
-		$('#licensedArchitectMessageUpdateTextarea').hide();
-		$('#licensedArchitectStringUpdateCommitButton').hide();
-		$('#licensedArchitectStringUpdateCancelButton').hide();
-		$('#CBDlicensedArchitectStringOutput').show();
+		$('#licensedPlannerStringUpdateStartButton').show();
+		$('#licensedPlannerMessageUpdateTextarea').hide();
+		$('#licensedPlannerStringUpdateCommitButton').hide();
+		$('#licensedPlannerStringUpdateCancelButton').hide();
+		$('#CBDlicensedPlannerStringOutput').show();
 	}
 }
-function startlicensedArchitectStringUpdate() {
-	licensedArchitectStringEditMode(true);
+function startlicensedPlannerStringUpdate() {
+	licensedPlannerStringEditMode(true);
 
-	$('#licensedArchitectMessageUpdateTextarea').val(CBD.licensedArchitectString);
+	$('#licensedPlannerMessageUpdateTextarea').val(CBD.licensedPlannerString);
 }
-function cancellicensedArchitectStringUpdate() {
-	licensedArchitectStringEditMode(false);
+function cancellicensedPlannerStringUpdate() {
+	licensedPlannerStringEditMode(false);
 }
-function commitlicensedArchitectMessageUpdate() {
-	callLoglicensedArchitectMessage($('#licensedArchitectMessageUpdateTextarea').val());
-	licensedArchitectStringEditMode(false);
+function commitlicensedPlannerMessageUpdate() {
+	callLoglicensedPlannerMessage($('#licensedPlannerMessageUpdateTextarea').val());
+	licensedPlannerStringEditMode(false);
 }
 
 
@@ -271,7 +271,7 @@ function callRelease(amountInEth) {
     .then(handleReleaseResult);
 }
 function releaseFromForm() {
-    var form = document.getElementById('licensedArchitectFundsInputGroup');
+    var form = document.getElementById('licensedPlannerFundsInputGroup');
     var amount = Number(form.elements['amount'].value);
 
     callRelease(amount);
@@ -282,7 +282,7 @@ function callAddFunds(includedEth) {
   .then(handleAddFundsResult)
 }
 function addFundsFromForm() {
-	var form = document.getElementById('licensedArchitectFundsInputGroup');
+	var form = document.getElementById('licensedPlannerFundsInputGroup');
 	var amount = Number(form.elements.amount.value);
 	callAddFunds(amount);
 }
@@ -302,17 +302,17 @@ function callLogAssociateMessage(message) {
     CBDContract.methods.logassociateArchitectStatement(message).send({"from":web3.eth.defaultAccount})
     .then(handleUpdateAssociateMessageResult);
 }
-function handleUpdatelicensedArchitectMessageResult(err, res) {
+function handleUpdatelicensedPlannerMessageResult(err, res) {
     if (err) console.log(err.message);
 }
 
-function callLoglicensedArchitectMessage(message) {
-  CBDContract.methods.loglicensedArchitectStatement(message).send({"from":web3.eth.defaultAccount})
+function callLoglicensedPlannerMessage(message) {
+  CBDContract.methods.loglicensedPlannerStatement(message).send({"from":web3.eth.defaultAccount})
   .then(handleUpdateLicensedMessageResult);
 }
 
-function callUpdatelicensedArchitectMessage(message) {
-    CBDContract.methods.setlicensedArchitectString(message, handleUpdatelicensedArchitectMessageResult);
+function callUpdatelicensedPlannerMessage(message) {
+    CBDContract.methods.setlicensedPlannerString(message, handleUpdatelicensedPlannerMessageResult);
 }
 function callCancel() {
     CBDContract.methods.recoverFunds().call()
@@ -326,8 +326,8 @@ function registerForNewEvents()
   // NOTE: Metamask doesn't support live events yet, see https://github.com/MetaMask/metamask-extension/issues/2601
 
   // web3.eth.getBlockNumber(function(err, blockNumber) {
-  //   CBDContract.events.LicensedArchitectStatement({fromBlock:blockNumber}, function(err, event) {
-  //     insertChat("Architect", event.returnValues[0], event.blockNumber);
+  //   CBDContract.events.licensedPlannerStatement({fromBlock:blockNumber}, function(err, event) {
+  //     insertChat("Planner", event.returnValues[0], event.blockNumber);
   //   })
 
   //   CBDContract.events.AssociateArchitectStatement({fromBlock:blockNumber}, function(err, event) {
@@ -340,8 +340,8 @@ function insertAllInChat(eventArray){
   eventArray.forEach(function(eventObject){
     who = "Contract"
     text = eventObject.event;
-    if (eventObject.event == "LicensedArchitectStatement") {
-      who = "Architect"
+    if (eventObject.event == "licensedPlannerStatement") {
+      who = "Planner"
       text = eventObject.returnValues[0]
     }
     else if (eventObject.event == "AssociateArchitectStatement") {
@@ -362,7 +362,7 @@ function getEventsAndParticipants(moduleParam, actionParam, additionalKeyValue){
 
 function insertChat(who, text, blockNumber){
   var control = "";
-  if (who === "Architect"){
+  if (who === "Planner"){
     control =
     '<li class="list-group-item list-group-item-success" style="width:100%">' +
       '<div class="row">' +

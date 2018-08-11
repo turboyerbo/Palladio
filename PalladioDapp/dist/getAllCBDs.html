@@ -2,41 +2,80 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/common.css">
-    <title>Palladio - get CBD addrs</title>
+    <title>Palladio - Calendar</title>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="css/app.css">
+          
     <script type="text/javascript" src='js/lib/embark.js'></script>
     <script type="text/javascript" src='js/lib/jquery.js'></script>
     <script type="text/javascript" src='js/lib/constants.js'></script>
     <script type="text/javascript" src='js/getAllCBDs.js'></script>
-    <!--script type="text/javascript" src="js/tableFilter.js"></script -->
+    <script type="text/javascript" src="js/tableFilter.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
 
-    <center><h1><b>Browse Contracts</b></h1><br></center>
     <div class="container">
        
-    <a href='/'>Palladio Home</a><br><br><br>
-    <input id="resetFilterButton" type="button" value="Reset Filter"><br><br>
+        <div id="nav-placeholder"></div>
+        <div class="container">
+        
+                <div class="well" style="font-size:3.8rem">
+                <!--<p> <a href="https://github.com/turboyerbo">Source code</a><br><br>
+              </div>-->
+              </div>
+                
+                <!-- Navbar -->
+                <div class="top">
+                <div class="bar red card left-align large">
+                  <a class="bar-item button hide-medium hide-large right padding-large hover-white large red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+                  <a href="index.html" class="bar-item button padding-large white">Home</a>
+                  <a href="addPlanner.html" class="bar-item button hide-small padding-large hover-white">Beta!</a>
+                  <a href="https://www.toronto.ca/wp-content/uploads/2018/02/8d71-Pre-Application-Form.pdf" class="bar-item button hide-small padding-large hover-white">Architect</a>
+                  <a href="getAllCBDs.html" class="bar-item button hide-small padding-large hover-white">Calendar</a>
+                  <a href="create.html" class="bar-item button hide-small padding-large hover-white">City Planner</a>
+                  <a href="https://www.toronto.ca/city-government/planning-development/application-forms-fees/building-toronto-together-a-development-guide/site-plan-control-applications/" class="bar-item button hide-small padding-large hover-white">About</a>
+                  <!--<a href="http://palladio.io/tools.html" class="bar-item button padding-large">How it Works</a>-->
+                  
+                <!--  <a href="http://palladio.io/how-it-works.html" class="bar-item button hide-small padding-large hover-white">About us</a> -->
+              
+                </div>
+                <!-- Navbar on small screens -->
+                <div id="navDemo" class="bar-block white hide hide-large hide-medium large">
+                  <a href="addPlanner.html" class="bar-item button padding-large">Beta!</a>
+                  <a href="https://www.toronto.ca/wp-content/uploads/2018/02/8d71-Pre-Application-Form.pdf" class="bar-item button hide-small padding-large hover-white">Architect</a>
+                  <a href="getAllCBDs.html" class="bar-item button padding-large">Calendar</a>
+                  <a href="create.html" class="bar-item button padding-large">City Planner</a>
+                  <a href="https://www.toronto.ca/city-government/planning-development/application-forms-fees/building-toronto-together-a-development-guide/site-plan-control-applications/" class="bar-item button hide-small padding-large hover-white">About</a>
+                  <!--<a href="http://palladio.io/tools.html" class="bar-item button padding-large">How it Works</a>-->
+                 <!-- <a href="http://palladio.io/tools.html" class="bar-item button padding-large">How it Works</a>-->
+                </div>
+                </div>  
+
+   <!-- <input id="resetFilterButton" type="button" value="Reset Filter"><br><br>-->
+
+   <br>
+   <br>
+   <br>
+   <br>
     <table border=3>
       <thead>
         <tr>
           <td>
             <select id="stateSelect">
               <option value="All">All</option>
-              <option value="Open">Open</option>
-              <option value="Committed">Committed</option>
-              <option value="Open_Committed">Open/Committed</option>
-              <option value="Expended">Expended</option>
+              <option value="Open">Upcoming</option>
+              <option value="Committed">In Progress</option>
+              <option value="Expended">Completed</option>
             </select>
           </td>
-          <td>
-            Addresses<br>
-            <input type="text" name="addressFilter" placeholder="Enter Address to filter on.">
+          <td>Consultations<br></td>
+       <!--     <input type="text" name="addressFilter" placeholder="Enter Address to filter on.">
           </td>
           <td>
-            Ethereum Deposited<br>
+Ethereum Deposited<br>
           </td>
           <td>
             <font color='green'>
@@ -44,15 +83,16 @@
             </font>
           </td>
           <td>
-            <!--span id="defaultAction">defaultAction<i class="fa"aria-hidden="true"></i></span>/<br>
-            <font color='red' -->
+           span id="defaultAction">defaultAction<i class="fa"aria-hidden="true"></i></span>/<br>
+            <font color='red'
               <span id="autoreleaseInterval">Contract Time</span>
-            <!--/font>/<br>
+           /font>/<br>
             <font color='green'>
               <span id="defaultTriggerTime">Auto-Release time<i class="fa"aria-hidden="true"></i></span>
-            </font-->
-          </td>
-          <td>Record Book</td>
+            </font>
+          </td>-->
+          <td>Duration</td>
+          <td>Category</td>
           <td>Description</td>
         </tr>
       </thead>
@@ -61,30 +101,19 @@
           <!-- if ($assoc['state'] == "Open") echo "<tr bgcolor='#B4E1E8'>";
           if ($assoc['state'] == "Committed") echo "<tr bgcolor='#FF3F2E'>";
           if ($assoc['state'] == "Expended") echo "<tr bgcolor='#aaaaaa'>"; -->
-          <td class="state">
-            
-          </td>
-          <td>
-            View Details: <a href='' class='contractAddress'></a><br>
-            <br>
-            Architect Registered Identity: <font color="#00aa00" class="licensedArchitectAddress"></font><br><br><br>
+          <td class=""></td>
+          <td><a href='' class='contractAddress'></a><br><br></td>
+          <!--  Applicant Identity: <font color="#00aa00" class="licensedPlannerAddress"></font><br><br><br>
             
             <span class='associateArchitect'></span>
-            <!-- <a href='../layout/interact.html' class='associateArchitect'></a><font color='#5d00ff' ></font> -->
-          </td>
-          <td width='15%'>
-            <font color="#ffffff">
-              <span class="balance">
-                
-              </span>
-          </td>
-          <td>
+            <a href='../layout/interact.html' class='associateArchitect'></a><font color='#5d00ff' ></font> -->
+   <!--       <td>
               <font color='green'>
                 <span class="fundsReleased">
                   
                 </span>
               </font><br>
-          </td>
+          </td>-->
           <td>
               <font>
                 <span class="defaultAction">

@@ -1,1 +1,39 @@
-{}
+{
+  "0x41941023680923e0fe4d74a34bdac8141f2540e3ae90623718e47d66d1ca4a2d": {
+    "contracts": {
+      "0xfce1e417d62ea4b045c38ff16f6b0086d65c66572f51753bbc1cd6d83a889993": {
+        "name": "CBDContractFactory",
+        "address": "0xb7ba488066c11f305039f7e02392cc41f5ae51e5"
+      },
+      "0x6527c5d9104d16637dc5d56b3627d7b59f55daf25dd1bba2c4f881d0b8f4e14d": {
+        "name": "PalladioCadToken",
+        "address": "0xd8653aa537b5e5333927db9709ca997d1e727493"
+      },
+      "0xce1a931bbeb56e37a6ee15e67e2d4487ca3524fced46739f28df7426da87dcc9": {
+        "name": "CBDContractFactory",
+        "address": "0x4da988969d2b50360ad8c8cbb16c174c64b5472a"
+      },
+      "0x7c1c10c515d1f741e9a29e8b3a44a35c1cfb78a2db30dacc12701944583094f8": {
+        "name": "PalladioCadToken",
+        "address": "0x2ded299ce32f829f1160e3ae2949310bf67a6127"
+      },
+      "0x6ca801b9b75c44ef680ddf0e547a89fd049ee1fa0f8ea29907cd1edef9f57fbd": {
+        "name": "CBDContractFactory",
+        "address": "0x5fc8db64026eeed328bedff39bf80d656cc1000a"
+      },
+      "0x3b811c2f3890b73199ce5abcbab808ccc6a928c31d6e223f2edef9af09a645fe": {
+        "name": "CBDContractFactory",
+        "address": "0xb2759f8e02097b3b0b8154038d76d8d919076c7b"
+      },
+      "0x4d4cce1ca21db8ffc3527daff307439a227393d864145f409f7d720dd2da4fc5": {
+        "name": "CBDContractFactory",
+        "address": "0x0d13917959aca8f29a6a6d99c2259eba623cb8ed"
+      },
+      "0xb1f353608c82207f37709b92672b9c886c99359c017d6cf271ce663336a7725b": {
+        "name": "PalladioSpaToken",
+        "address": "0x362497a53ead0614c65e9d4bd0f61e8fc539fca3"
+      }
+    },
+    "name": "testnet"
+  }
+}

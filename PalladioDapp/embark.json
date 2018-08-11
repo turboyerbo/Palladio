@@ -7,11 +7,11 @@
     "js/lib/constants.js": "app/js/lib/constants.js",
     "js/index.js": "app/js/index.js",
     "js/create.js": "app/js/create.js",
-    "js/addArchitect.js": "app/js/addArchitect.js",
+    "js/addPlanner.js": "app/js/addPlanner.js",
     "js/interact.js": "app/js/interact.js",
     "js/getAllCBDs.js": "app/js/getAllCBDs.js",
     "index.html": "app/index.html",
-    "addArchitect.html": "app/addArchitect.html",
+    "addPlanner.html": "app/addPlanner.html",
     "create.html": "app/create.html",
     "interact.html": "app/interact.html",
     "getAllCBDs.html": "app/getAllCBDs.html"
