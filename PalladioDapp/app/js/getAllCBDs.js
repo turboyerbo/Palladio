@@ -17,19 +17,19 @@ function buildCBDRow(cbdObject, index){
   if(index !== 0) $("tbody").append($(".mainTableRow").first().clone());
   switch(cbdObject.state){
     case 0:
-      $(`.state:eq(${index})`).parent().css("background-color", "#B4E1E8");
+      $(`.state:eq(${index})`).parent().css("background-color", "white");
       break;
     case 1:
-      $(`.state:eq(${index})`).parent().css("background-color", "#F42B01");
+      $(`.state:eq(${index})`).parent().css("background-color", "white");
       break;
     case 2:
       $(`.state:eq(${index})`).parent().css("background-color", "grey");
       break;
   }
   $(`.state:eq(${index})`).text(CBD_STATES[cbdObject.state]);
-  $(`.contractAddress:eq(${index})`).text(cbdObject.address);
+  $(`.contractAddress:eq(${index})`).text("View Consultation");
   $(`.contractAddress:eq(${index})`).attr("href", `interact.html?contractAddress=${cbdObject.address}`);
-  $(`.licensedArchitectAddress:eq(${index})`).html(`\n <a href='${window.etherscanURL}${cbdObject.licensedArchitect}'>${cbdObject.licensedArchitect}</a>`);
+ //  $(`.licensedArchitectAddress:eq(${index})`).html(`\n <a href='${window.etherscanURL}${cbdObject.licensedArchitect}'>${cbdObject.licensedArchitect}</a>`);
   // $(`.licensedArchitectAddress:eq(${index})`).text(cbdObject.licensedArchitect);
   if(cbdObject.associateArchitect !== "0x0000000000000000000000000000000000000000"){
     // $(`.associateArchitect:eq(${index})`).text("associateArchitect: \n" + );
@@ -56,7 +56,7 @@ function buildCBDRow(cbdObject, index){
     }
   }
   else{
-    $(`.autoreleaseTime:eq(${index})`).text("- Not Committed Yet -");
+    $(`.autoreleaseTime:eq(${index})`).text("- Upcoming -");
   }
   $(`.recordBook:eq(${index})`).text(cbdObject.recordBook);
   $(`.initialStatement:eq(${index})`).text(cbdObject.initialStatement);
