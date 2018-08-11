@@ -1,7 +1,7 @@
 pragma solidity ^0.4.17;
 
 import "./CBDContractFactory.sol";
-import "./PalladioCad.sol";
+import "./PalladioSpa.sol";
 
 //*Collaborative Blockchain Design (CBD) begins when the Licensed Architect (Ontario Association of Architects)is: 
 // (1) digitally-verified using their unique Public Key assigned by the Palladio; 
@@ -13,7 +13,7 @@ import "./PalladioCad.sol";
 
 // (1) been accredicted by the Canadian Architecture Certification Board (CACB); 
 // (2) authenticated their identity using their unique CACB Public Key to access the form;
-// (3) commits to the contract by making a deposit with PalladioCAD Tokens (PCAD)
+// (3) commits to the contract by making a deposit with PalladioSpa Tokens (PSpa)
 
 // The constructor is payable, so the contract can be instantiated with initial funds.
 // In addition, anyone can add more funds to the Payment by calling addFunds.
