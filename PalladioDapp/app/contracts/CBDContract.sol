@@ -3,41 +3,37 @@ pragma solidity ^0.4.17;
 import "./CBDContractFactory.sol";
 import "./PalladioSpa.sol";
 
-//*Collaborative Blockchain Design (CBD) begins when the Licensed Planner (Ontario Association of Planners)is: 
+//*Collaborative Blockchain Design (CBD) begins when the Licensed Planner is: 
 // (1) digitally-verified using their unique Public Key assigned by the Palladio; 
-// (2) creates an open call for submissions; and 
-// (3) defines the inital value of the contract.
+// (2) posts a pre-consultation; and 
+// (3) defines the unique account of the applicant.
 //
-//*A verified Associate "intern" Planner can join the contract, in order to submit work annonymously when
-// The Associacte Planner has:
+//*An applicant can join the contract, in order to discuss their Site Plan Approval (SPA) documents
+// The Applicant has:
 
-// (1) been accredicted by the Canadian Plannerure Certification Board (CACB); 
-// (2) authenticated their identity using their unique CACB Public Key to access the form;
-// (3) commits to the contract by making a deposit with PalladioSpa Tokens (PSpa)
+// (1) submitted a preliminary pdf of the SPA to the City Planner; 
+// (2) authenticated their identity using their unique Public Key to instantiate the consultation at the pre-determined date, set by the City Planner;
+// (3) commits to the contract by making a deposit with PalladioSpa Tokens (PSPA)
 
 // The constructor is payable, so the contract can be instantiated with initial funds.
-// In addition, anyone can add more funds to the Payment by calling addFunds.
+
 
 // The Licensed Planner controls most functions, but
-// the lLicensed Planner can never recover the payment, so they should pay a small disposable amount.
+// the Licensed Planner can never recover the payment, so they should pay a small disposable amount.
 //
-// If he calls the recover() function before anyone else commit() the funds will be returned, minus the 2% fee.
+// If the Planner calls the recover() function before anyone commit() the funds will be returned, minus the 2% fee.
 
-// If the CBD is in the Open state, ANYONE can join the contract anonymously by a verified professional. 
-// Only a digitally-verified Associate Planner can receive payment in the commited state.
-// The Associate Planner MUST be verified or their submission will not be posted and the contract remains OPEN.
+// If the CBD is in the Open state, only the Applicant who submitted the SPA Document for a pre-consultation can join the contract.
+// Only a digitally-verified Applicant can log statements in the commited state.
+// The Applicant MUST be verified or their submission will not be posted and the contract remains OPEN.
 
-// An Associate Planner is digitally-verified, instantly, their Record Book Experience Form 
-// is digitally signed with a time-stamp, and the contract state changes from "open()" to "commit()"
-// for their eventual license review. 
-
-// This change in the state from Open to Committed is instantaneous and cannot be reversed. 
+// The change in the state from Open to Committed is instantaneous and cannot be reversed. 
 // The CBD will never revert to the Open state once commited.
-// Any associate can join the contract once it's been set via commit().
+// Any Applicant can launch the consultation once it's been set via commit().
 
 // In the committed state,
-// the Licensed Planner can at any time choose to release any amount of PL1 Tokens.
-// any Associate Planner and any amount of funds.*
+// the Licensed Planner can at any time log statements.
+// Each logged statement requires a marginal payment (gas fee); as per the typical protocol defined for the Ethereum Network.
 
 contract CBDContract {
 
@@ -47,25 +43,14 @@ contract CBDContract {
     // Cache the ID of this 
     uint id;
 
-//recordBook will never change and must be one of the following:
-//A Design / Construction Documents
-// 1 Programming
-// 2 Site Analysis
-// 3 Schematic Design
-// 4 Engineering Systems Coordination
-// 5 Building Cost Analysis
-// 6 Code Research
-// 7 Design Development
-// 8 Construction Documents
-// 9 Specifications & Materials Research
-// 10 Document Checking and Coordination //
+//recordBook will never change and must be one of the defined topics, determined by (in this case), the City of Toronto.
 
     string public recordBook;
     string public initialStatement;
 
-    //CBD will start with a licensedPlanner but no associatePlanner (associatePlanner==0x0)
+    //CBD will start with a licensedPlanner but no applicant (applicant==0x0)
     address public licensedPlanner;
-    address public associatePlanner;
+    address public applicant;
             
     //Set to true if fundsRecovered is called
     bool recovered = false;
@@ -78,9 +63,9 @@ contract CBDContract {
     uint public autoreleaseInterval;
 
     //Calculated from autoreleaseInterval in commit(),
-    //and recaluclated whenever the licensedPlanner (or possibly the associatePlanner) 
+    //and recaluclated whenever the licensedPlanner (or possibly the applicant) 
     //calls delayhasDefaultRelease()
-    //After this time, auto-release can be called by the associatePlanner.
+    //After this time, auto-release can be called by the applicant.
     uint public autoreleaseTime;
 
     //Most action happens in the Committed state.
@@ -92,14 +77,14 @@ contract CBDContract {
     
     State public state;
     //Note that a CBD cannot go from Committed back to Open, but it can go from Closed back to Committed
-    //(this would retain the committed associatePlanner). Search for Closed and Unclosed events to see how this works.
+    //(this would retain the committed applicant). Search for Closed and Unclosed events to see how this works.
 
     event Created(address indexed contractAddress, address _licensedPlanner, uint _autoreleaseInterval, string _recordBook);
     event FundsAdded(address from, uint amount); //The licensedPlanner has added funds to the CBD.
     event LicensedPlannerStatement(string statement);
-    event AssociatePlannerStatement(string statement);
+    event ApplicantStatement(string statement);
     event FundsRecovered();
-    event Committed(address _associatePlanner);
+    event Committed(address _applicant);
     event RecordBook(string statement);
     event FundsReleased(uint amount);
     event Closed();
@@ -160,12 +145,12 @@ contract CBDContract {
         return licensedPlanner;
     }
 
-    function getAssociate()
+    function getApplicant()
     public
     constant
     returns(address)
     {
-        return associatePlanner;
+        return applicant;
     }
 
     function getState()
@@ -181,7 +166,7 @@ contract CBDContract {
     constant
     returns(address, string, string, State, address, uint, uint, uint, uint, uint) 
     {
-        return (licensedPlanner, recordBook, initialStatement, state, associatePlanner, this.balance, amountDeposited, amountReleased, autoreleaseInterval, autoreleaseTime);
+        return (licensedPlanner, recordBook, initialStatement, state, applicant, this.balance, amountDeposited, amountReleased, autoreleaseInterval, autoreleaseTime);
     }
 
     function getBalance()
@@ -220,8 +205,8 @@ contract CBDContract {
         selfdestruct(licensedPlanner);
     }
 
-    // An associate can commit
-    function commit(address associate)
+    // An applicant can commit
+    function commit(address verifiedApplicant)
     public
     inState(State.Open)
     {
@@ -230,10 +215,10 @@ contract CBDContract {
         
         // We assume, that having been called from the token contract
         // means that the transfer has been made and it is valid for the
-        // originator of this call to become the associate
-        associatePlanner = associate;
+        // originator of this call to become the applicant
+        applicant = verifiedApplicant;
         state = State.Committed;
-        Committed(associatePlanner);
+        Committed(applicant);
 
         autoreleaseTime = now + autoreleaseInterval;
     }
@@ -267,7 +252,7 @@ contract CBDContract {
         AutoreleaseDelayed();
     }
 
-// Autorelease function will send all funds to Associate Planner
+// Autorelease function will send all funds to Applicant
 // Automatically sends 2% (in Wei) to Palladio Address; returns false on failure.
 
     function triggerAutoRelease()
@@ -286,16 +271,15 @@ contract CBDContract {
     // Chat/logging functions
     function loglicensedPlannerStatement(string statement)
     public
-    onlylicensedPlanner() 
-    {
+    onlylicensedPlanner() {
         LicensedPlannerStatement(statement);
     }
 
-    function logassociatePlannerStatement(string statement)
+    function logapplicantStatement(string statement)
     public
-    onlyassociatePlanner() 
+    onlyapplicant() 
     {
-        AssociatePlannerStatement(statement);
+        ApplicantStatement(statement);
     }
 
     ////////////////////////////////////////////////////////
@@ -312,8 +296,8 @@ contract CBDContract {
         owner.getPalladioAddress().transfer(palladioFee);
 
         // subtract fee from amount sent
-        uint associateAmount = amount - palladioFee;
-        associatePlanner.transfer(associateAmount);
+        uint verifiedApplicantAmount = amount - palladioFee;
+        applicant.transfer(verifiedApplicantAmount);
 
         amountReleased += amount;
         FundsReleased(amount);
@@ -342,12 +326,12 @@ contract CBDContract {
         _;
     }
 
-    modifier onlyassociatePlanner() {
-        require(msg.sender == associatePlanner);
+    modifier onlyapplicant() {
+        require(msg.sender == applicant);
         _;
     }
-    modifier onlylicensedPlannerOrassociatePlanner() {
-        require((msg.sender == licensedPlanner) || (msg.sender == associatePlanner));
+    modifier onlylicensedPlannerOrapplicant() {
+        require((msg.sender == licensedPlanner) || (msg.sender == applicant));
         _;
     }
 
