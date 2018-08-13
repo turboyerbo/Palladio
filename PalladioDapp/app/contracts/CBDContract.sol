@@ -50,7 +50,7 @@ contract CBDContract {
 
     //CBD will start with a licensedPlanner but no applicant (applicant==0x0)
     address public licensedPlanner;
-    address public applicant;
+    address public associateArchitect; // associate = applicant = architect
             
     //Set to true if fundsRecovered is called
     bool recovered = false;
@@ -82,9 +82,9 @@ contract CBDContract {
     event Created(address indexed contractAddress, address _licensedPlanner, uint _autoreleaseInterval, string _recordBook);
     event FundsAdded(address from, uint amount); //The licensedPlanner has added funds to the CBD.
     event LicensedPlannerStatement(string statement);
-    event ApplicantStatement(string statement);
+    event AssociateArchitectStatement(string statement);
     event FundsRecovered();
-    event Committed(address _applicant);
+    event Committed(address _associateArchitect);
     event RecordBook(string statement);
     event FundsReleased(uint amount);
     event Closed();
@@ -145,12 +145,12 @@ contract CBDContract {
         return licensedPlanner;
     }
 
-    function getApplicant()
+    function getAssociate()
     public
     constant
     returns(address)
     {
-        return applicant;
+        return associateArchitect;
     }
 
     function getState()
@@ -166,7 +166,7 @@ contract CBDContract {
     constant
     returns(address, string, string, State, address, uint, uint, uint, uint, uint) 
     {
-        return (licensedPlanner, recordBook, initialStatement, state, applicant, this.balance, amountDeposited, amountReleased, autoreleaseInterval, autoreleaseTime);
+        return (licensedPlanner, recordBook, initialStatement, state, associateArchitect, this.balance, amountDeposited, amountReleased, autoreleaseInterval, autoreleaseTime);
     }
 
     function getBalance()
@@ -206,7 +206,7 @@ contract CBDContract {
     }
 
     // An applicant can commit
-    function commit(address applicant)
+    function commit(address associate)
     public
     inState(State.Open)
     {
@@ -216,9 +216,9 @@ contract CBDContract {
         // We assume, that having been called from the token contract
         // means that the transfer has been made and it is valid for the
         // originator of this call to become the applicant
-        applicant = applicant;
+        associateArchitect = associate;
         state = State.Committed;
-        Committed(applicant);
+        Committed(associateArchitect);
 
         autoreleaseTime = now + autoreleaseInterval;
     }
@@ -275,11 +275,11 @@ contract CBDContract {
         LicensedPlannerStatement(statement);
     }
 
-    function logapplicantStatement(string statement)
+    function logassociateArchitectStatement(string statement)
     public
-    onlyapplicant() 
+    onlyassociateArchitect() 
     {
-        ApplicantStatement(statement);
+        AssociateArchitectStatement(statement);
     }
 
     ////////////////////////////////////////////////////////
@@ -296,8 +296,8 @@ contract CBDContract {
         owner.getPalladioAddress().transfer(palladioFee);
 
         // subtract fee from amount sent
-        uint applicantAmount = amount - palladioFee;
-        applicant.transfer(applicantAmount);
+        uint associateAmount = amount - palladioFee;
+        associateArchitect.transfer(associateAmount);
 
         amountReleased += amount;
         FundsReleased(amount);
@@ -326,12 +326,12 @@ contract CBDContract {
         _;
     }
 
-    modifier onlyapplicant() {
-        require(msg.sender == applicant);
+    modifier onlyassociateArchitect() {
+        require(msg.sender == associateArchitect);
         _;
     }
-    modifier onlylicensedPlannerOrapplicant() {
-        require((msg.sender == licensedPlanner) || (msg.sender == applicant));
+    modifier onlylicensedPlannerOrassociateArchitect() {
+        require((msg.sender == licensedPlanner) || (msg.sender == associateArchitect));
         _;
     }
 
