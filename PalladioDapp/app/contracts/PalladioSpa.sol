@@ -32,13 +32,13 @@ contract PalladioSpaToken is EIP20Interface, Owned {
         balances[msg.sender] = totalSupply;             // Give the creator all initial tokens
         name = "PalladioSpa";                         // Set the name for display purposes
         decimals = 18;                                  // Amount of decimals for display purposes
-        symbol = "PSpa";                                 // Set the symbol for display purposes
+        symbol = "PSPA";                                 // Set the symbol for display purposes
 
         commitThreshold = 1 * (10**18);
 
         // TESTING - Automatically transfer 5 transactions to my assocuate account
-        address associate = 0x0F990402719D0C99600Bb725C04945526731F7d1;
-        transfer(associate, commitThreshold * (2)); 
+        address applicant = 0x0F990402719D0C99600Bb725C04945526731F7d1;
+        transfer(applicant, commitThreshold * (2)); 
         }
 
     function transfer(address _to, uint256 _value) public returns (bool success) {

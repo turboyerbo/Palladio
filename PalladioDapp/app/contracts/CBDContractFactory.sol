@@ -14,7 +14,7 @@ contract CBDContractFactory {
     mapping(address => uint) licensedPlanners;
 
 
-    // contract address array.  Lists all
+    // Contract address array.  Lists all
     // open contracts.  After a contract is
     // complete it will be removed from this
     // list.  The mapping is id->contract

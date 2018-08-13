@@ -31,11 +31,11 @@ function buildCBDRow(cbdObject, index){
   $(`.contractAddress:eq(${index})`).attr("href", `interact.html?contractAddress=${cbdObject.address}`);
  //  $(`.licensedPlannerAddress:eq(${index})`).html(`\n <a href='${window.etherscanURL}${cbdObject.licensedPlanner}'>${cbdObject.licensedPlanner}</a>`);
   // $(`.licensedPlannerAddress:eq(${index})`).text(cbdObject.licensedPlanner);
-  if(cbdObject.associateArchitect !== "0x0000000000000000000000000000000000000000"){
-    // $(`.associateArchitect:eq(${index})`).text("associateArchitect: \n" + );
-  $(`.associateArchitect:eq(${index})`).html(`Associate: \n <a href='${window.etherscanURL}${cbdObject.associateArchitect}'>${cbdObject.associateArchitect}</a>`);
+  if(cbdObject.applicant !== "0x0000000000000000000000000000000000000000"){
+    // $(`.applicant:eq(${index})`).text("applicant: \n" + );
+  $(`.applicant:eq(${index})`).html(`Applicant: \n <a href='${window.etherscanURL}${cbdObject.applicant}'>${cbdObject.applicant}</a>`);
   }else{
-  $(`.associateArchitect:eq(${index})`).html(`<a href='interact.html?contractAddress=${cbdObject.address}'> Contract Details </a>`);
+  $(`.applicant:eq(${index})`).html(`<a href='interact.html?contractAddress=${cbdObject.address}'> Contract Details </a>`);
   }
   $(`.balance:eq(${index})`).text(cbdObject.balance);
   $(`.commitThreshold:eq(${index})`).text(cbdObject.commitThreshold);
