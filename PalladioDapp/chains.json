@@ -40,6 +40,22 @@
       "0xf43ed94c09294489b851e6d52c95decb1e0c18946b36b00355bad7cb0ac86c97": {
         "name": "PalladioSpaToken",
         "address": "0xc43c5ee3ebd73235a3d97966add92ecce0c21297"
+      },
+      "0xec1580fd8c639ca76ecf53a35d59f84290658e14d58990a80214cb73408dac3c": {
+        "name": "CBDContractFactory",
+        "address": "0xa7f66faa9d587b91db8ccb34de95e41ea059c896"
+      },
+      "0xbbd054bf279004541cc12bc8427f2ce3ae99d44160740f9e824121e799d7f3c5": {
+        "name": "PalladioSpaToken",
+        "address": "0xbd5012a368b51b813fb8ae67c0e5dea7df06f04f"
+      },
+      "0x83b705f59934d5a009a5168eb5af6728d0308b9576e84e8c88992f3a16ab0b1f": {
+        "name": "CBDContractFactory",
+        "address": "0xe3698d6b6036a1916c00a756aa6f99d127786969"
+      },
+      "0xd3c3f30e65e78b8bb81bc95255f498a2fae43b37b24da5a4bff7aa3c2fede5b9": {
+        "name": "PalladioSpaToken",
+        "address": "0xe4a4f67fa625b99da116c46b56bf874aafdcca66"
       }
     },
     "name": "testnet"

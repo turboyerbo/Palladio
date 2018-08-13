@@ -206,7 +206,7 @@ contract CBDContract {
     }
 
     // An applicant can commit
-    function commit(address verifiedApplicant)
+    function commit(address applicant)
     public
     inState(State.Open)
     {
@@ -216,7 +216,7 @@ contract CBDContract {
         // We assume, that having been called from the token contract
         // means that the transfer has been made and it is valid for the
         // originator of this call to become the applicant
-        applicant = verifiedApplicant;
+        applicant = applicant;
         state = State.Committed;
         Committed(applicant);
 
@@ -296,8 +296,8 @@ contract CBDContract {
         owner.getPalladioAddress().transfer(palladioFee);
 
         // subtract fee from amount sent
-        uint verifiedApplicantAmount = amount - palladioFee;
-        applicant.transfer(verifiedApplicantAmount);
+        uint applicantAmount = amount - palladioFee;
+        applicant.transfer(applicantAmount);
 
         amountReleased += amount;
         FundsReleased(amount);

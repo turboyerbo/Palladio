@@ -32,7 +32,7 @@ contract PalladioSpaToken is EIP20Interface, Owned {
         balances[msg.sender] = totalSupply;             // Give the creator all initial tokens
         name = "PalladioSpa";                         // Set the name for display purposes
         decimals = 18;                                  // Amount of decimals for display purposes
-        symbol = "PSpa";                                 // Set the symbol for display purposes
+        symbol = "PSPA";                                 // Set the symbol for display purposes
 
         commitThreshold = 1 * (10**18);
 
