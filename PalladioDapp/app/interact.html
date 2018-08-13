@@ -94,12 +94,12 @@
                     <table width='80%'>
                 <tr width='80%'>
                                 <small>
-    <td align='right'><span id='CBDFundsDepositedOutput'>loading...</span> 
+<!--    <td align='right'><span id='CBDFundsDepositedOutput'>loading...</span> 
         </td>
         <br>
         <br>
     <td> deposited
-        </td>
+        </td>-->
  <!--               <td align='right'><font><span id='CBDFundsReleasedOutput'>loading...</span></font> 
              </td><br>
  -->
@@ -123,15 +123,15 @@
                         <span id='CBDCommitThresholdOutput'>loading...</span>
                         </font>
                     </td>
---> <td align='center'>
+<!-<td align='center'>
         Default Action:<br>
             <font color="#cf7700">
                 <span id='CBDDefaultActionOutput'>loading...</span>
                     </font>
                         <div id='defaultActionInputGroup' hidden='true'>
                           <input type='button' value='callDefaultAction' onClick='callDefaultAction()'>
-                        </div>
-        </td> 
+                        </div>-->
+<!--        </td> 
     <td align='center'>
         <span id='CBDDefaultActionTriggerTime'></span>
         </td>
@@ -143,7 +143,7 @@
         <form id="delayDefaultActionForm" hidden='true'>
                           <input type='button' value='delayDefaultAction' onClick='delayDefaultRelease()'>
                         </form>
-                    </td>
+                    </td>-->
         </tr>
         </table>
         </td></tr>
@@ -155,12 +155,12 @@
 <!--Applicant-->   
     <td width='50%' align='center'>
                 Applicant:<br>
-                <span id='CBDApplicantOutput'>loding...</span>
+                <span id='CBDapplicantArchitectOutput'>loading...</span>
                 <div id='commitInputGroup' hidden='true'><button onclick="callCommit()">Commit to Contract</button></div>
         </td>
 </tr>
         <tr>
-<!--City Planner Chat-->  
+ <!--City Planner Chat-->  
             <td align='center'>
                 Planner<br><br>
                 <div id='updatelicensedPlannerStringInputGroup' hidden='true'>
@@ -176,13 +176,13 @@
 
 <!--Applicant Chat-->                  
                 Applicant:<br><br>
-                <div id='updateApplicantStringInputGroup' hidden='true'>
-    				<button id='ApplicantStringUpdateStartButton' onclick="startApplicantStringUpdate()">Log Statements</button><br><br>
-    				<textarea id='applicantMessageUpdateTextarea' rows='15' cols='15' hidden='true'></textarea><br>
-    				<button id='ApplicantStringUpdateCommitButton' hidden='true' onClick="commitapplicantMessageUpdate()">Log Statement</button><br><br>
-    				<button id='ApplicantStringUpdateCancelButton' hidden='true' onClick="cancelApplicantStringUpdate()">Cancel</button>
+                <div id='updateapplicantArchitectStringInputGroup' hidden='true'>
+    				<button id='applicantArchitectStringUpdateStartButton' onclick="startApplicantArchitectStringUpdate()">Log Statements</button><br><br>
+    				<textarea id='applicantArchitectMessageUpdateTextarea' rows='15' cols='15' hidden='true'></textarea><br>
+    				<button id='applicantArchitectStringUpdateCommitButton' hidden='true' onClick="commitapplicantArchitectMessageUpdate()">Log Statement</button><br><br>
+    				<button id='applicantArchitectStringUpdateCancelButton' hidden='true' onClick="cancelApplicantArchitectStringUpdate()">Cancel</button>
     			</div>
-                <div id='CBDApplicantStringOutput' align='left'></div>
+                <div id='CBDApplicantArchitectStringOutput' align='left'></div>
             </td>
         </tr>
     </table>
