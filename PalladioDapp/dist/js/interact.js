@@ -18,9 +18,9 @@ function onError(err)
   console.log("Error calling CBD method: " + err);
   ////workaournd////////////////////////////////////////////////////////
   console.log("This Contract doesn't exist or was destroyed.")
-  document.getElementById('licensedArchitectFundsInputGroup').hidden = true;
-  document.getElementById('updatelicensedArchitectStringInputGroup').hidden = true;
-  document.getElementById('updateApplicantStringInputGroup').hidden = true;
+  document.getElementById('licensedPlannerFundsInputGroup').hidden = true;
+  document.getElementById('updatelicensedPlannerStringInputGroup').hidden = true;
+  document.getElementById('updateRecipientStringInputGroup').hidden = true;
   document.getElementById('commitInputGroup').hidden = true;
   document.getElementById('recoverFundsInputGroup').hidden = true;
   document.getElementById('defaultActionInputGroup').hidden = true;
@@ -29,15 +29,15 @@ function onError(err)
   $('.insertAddress').text(CBD.address);
   $('#etherscanLink').attr("href", '${window.etherscanURL}${CBD.address}');
   $('#CBDInfoOutput').text("Doesn't exist/Destroyed");
-  $('#CBDlicensedArchitectOutput').text("None")
-  $('#CBDApplicantOutput').text("None")
-  $('#CBDlicensedArchitectStringOutput').text("None");
-  $('#CBDApplicantStringOutput').text("None");
+  $('#CBDlicensedPlannerOutput').text("None")
+  $('#CBDRecipientOutput').text("None")
+  $('#CBDlicensedPlannerStringOutput').text("None");
+  $('#CBDRecipientStringOutput').text("None");
   $('#CBDBalanceOutput').text("None");
-  $('#CBDFundsDepositedOutput').text("None");
+//  $('#CBDFundsDepositedOutput').text("None");
 
-  $('#CBDFundsReleasedOutput').text("None");
-  $('#CBDDefaultActionOutput').text("None");
+//  $('#CBDFundsReleasedOutput').text("None");
+//  $('#CBDDefaultActionOutput').text("None");
   $('#CBDDefaultTimeoutLength').text("None");
   $('#CBDTable').css("background-color", "grey");
 }
@@ -75,25 +75,25 @@ function insertInstanceStatsInPage(CBD, address){
   $('.insertAddress').text(CBD.address);
   $('#etherscanLink').attr("href", `${window.etherscanURL}${address}`);
   $('#CBDInfoOutput').text(CBD_STATES[CBD.state]);
-  $('#CBDlicensedArchitectOutput').text(CBD.licensedArchitect)
-  $('#CBDlicensedArchitectStringOutput').text(CBD.initialStatement);
-  CBD.Applicant == '0x0000000000000000000000000000000000000000' ? $('#CBDApplicantOutput').text("None") : $('#CBDApplicantOutput').text(CBD.applicant);
-  $('#CBDApplicantStringOutput').text(CBD.ApplicantString, 'ether');
+  $('#CBDlicensedPlannerOutput').text(CBD.licensedPlanner)
+  $('#CBDlicensedPlannerStringOutput').text(CBD.initialStatement);
+  CBD.recipient == '0x0000000000000000000000000000000000000000' ? $('#CBDRecipientOutput').text("None") : $('#CBDRecipientOutput').text(CBD.associateArchitect);
+  $('#CBDRecipientStringOutput').text(CBD.recipientString, 'ether');
   $('#CBDBalanceOutput').text(CBD.balance + ' ETH');
-  $('#CBDFundsDepositedOutput').text(CBD.amountDeposited + ' ETH');
-  $('#CBDFundsReleasedOutput').text(CBD.amountReleased + ' ETH');
+//  $('#CBDFundsDepositedOutput').text(CBD.amountDeposited + ' ETH');
+//  $('#CBDFundsReleasedOutput').text(CBD.amountReleased + ' ETH');
 
-  $('#CBDDefaultActionOutput').text(CBD.defaultAction);
-  $('#CBDDefaultTimeoutLength').text(secondsToDhms(CBD.autoreleaseInterval));
-  $('#CBDDefaultActionTriggerTime').text(new Date(CBD.autoreleaseTime * 1000).toLocaleString());
+//  $('#CBDDefaultActionOutput').text(CBD.defaultAction);
+//  $('#CBDDefaultTimeoutLength').text(secondsToDhms(CBD.autoreleaseInterval));
+//  $('#CBDDefaultActionTriggerTime').text(new Date(CBD.autoreleaseTime * 1000).toLocaleString());
 
   switch(CBD.state)
   {
     case 0:
-    $('#CBDTable').css("background-color", "#fffff");
+    $('#CBDTable').css("background-color", "#white");
     break;
     case 1:
-    $('#CBDTable').css("background-color", "#2196F3");
+    $('#CBDTable').css("background-color", "#f6fbfc");
     break;
     case 2:
     $('#CBDTable').css("background-color", "grey");
@@ -103,16 +103,16 @@ function insertInstanceStatsInPage(CBD, address){
 
 
 function updateExtraInput(CBD) {
-  var userIslicensedArchitect = (CBD.licensedArchitect == web3.eth.defaultAccount);
-  var isNulllicensedArchitect = (CBD.licensedArchitect == '0x0000000000000000000000000000000000000000');
-  var userIsApplicant = (CBD.applicant == web3.eth.defaultAccount);
-  var isNullApplicant = (CBD.applicant == '0x0000000000000000000000000000000000000000');
+  var userIslicensedPlanner = (CBD.licensedPlanner == web3.eth.defaultAccount);
+  var isNulllicensedPlanner = (CBD.licensedPlanner == '0x0000000000000000000000000000000000000000');
+  var userIsRecipient = (CBD.associateArchitect == web3.eth.defaultAccount);
+  var isNullRecipient = (CBD.associateArchitect == '0x0000000000000000000000000000000000000000');
 
-  document.getElementById('licensedArchitectFundsInputGroup').hidden = !userIslicensedArchitect;
-  document.getElementById('updatelicensedArchitectStringInputGroup').hidden = !userIslicensedArchitect;
-  document.getElementById('updateApplicantStringInputGroup').hidden = !userIsApplicant;
-  document.getElementById('commitInputGroup').hidden = !isNullApplicant;
-	document.getElementById('recoverFundsInputGroup').hidden = !(userIslicensedArchitect && isNullApplicant);
+  document.getElementById('licensedPlannerFundsInputGroup').hidden = !userIslicensedPlanner;
+  document.getElementById('updatelicensedPlannerStringInputGroup').hidden = !userIslicensedPlanner;
+  document.getElementById('updateRecipientStringInputGroup').hidden = !userIsRecipient;
+  document.getElementById('commitInputGroup').hidden = !isNullRecipient;
+	document.getElementById('recoverFundsInputGroup').hidden = !(userIslicensedPlanner && isNullRecipient);
   web3.eth.getBlock("latest",
     function(err,res){
       if (err) {
@@ -127,24 +127,24 @@ function updateExtraInput(CBD) {
       document.getElementById('defaultActionInputGroup').hidden = true;
       document.getElementById('delayDefaultActionForm').hidden = true;
       }
-      if(!(userIsApplicant || userIslicensedArchitect)){
+      if(!(userIsRecipient || userIslicensedPlanner)){
         document.getElementById('defaultActionInputGroup').hidden = true;
         document.getElementById('delayDefaultActionForm').hidden = true;
       }
-      else if(CBD.autoreleaseTime > 0 && CBD.autoreleaseTime < currentTime && CBD.state === 1 && (userIsApplicant || userIslicensedArchitect)){
+      else if(CBD.autoreleaseTime > 0 && CBD.autoreleaseTime < currentTime && CBD.state === 1 && (userIsRecipient || userIslicensedPlanner)){
         document.getElementById('CBDDefaultActionTriggerTime').hidden = false;
         document.getElementById('CBDDefaultTimeoutLengthGroup').hidden = false;
         document.getElementById('defaultActionInputGroup').hidden = false;
         document.getElementById('delayDefaultActionForm').hidden = false;
       }
-      else if((CBD.autoreleaseTime > currentTime && CBD.state == 1 && (userIsApplicant || userIslicensedArchitect))){
+      else if((CBD.autoreleaseTime > currentTime && CBD.state == 1 && (userIsRecipient || userIslicensedPlanner))){
         document.getElementById('CBDDefaultActionTriggerTime').hidden = false;
-        document.getElementById('CBDDefaultTimeoutLengthGroup').hidden = false;
+        document.getElementById('CBDDefaultTimeoutLengthGroup').hidden = true;
         document.getElementById('defaultActionInputGroup').hidden = true;
         document.getElementById('delayDefaultActionForm').hidden = true;
         differenceTime = Number(CBD.autoreleaseTime) - res.timestamp;
         if(0 < differenceTime && differenceTime <= 86400){
-          $('#CBDDefaultActionTriggerTime').text("Remaining Time: " + secondsToDhms(differenceTime));
+          $('#CBDDefaultActionTriggerTime').text("Time: " + secondsToDhms(differenceTime));
         }
         else{
           $('#CBDDefaultActionTriggerTime').text(new Date(CBD.autoreleaseTime * 1000).toLocaleString());
@@ -160,7 +160,7 @@ function updateExtraInput(CBD) {
         document.getElementById('CBDDefaultTimeoutLengthGroup').hidden = false;
       }
       else {
-        document.getElementById('CBDDefaultActionTriggerTime').hidden = true;
+        document.getElementById('CBDDefaultActionTriggerTime').hidden = false;
         document.getElementById('CBDDefaultTimeoutLengthGroup').hidden = false;
       }
   });
@@ -182,78 +182,80 @@ function checkForUserAddresses() {
 function onUserAddressesNotVisible() {
     document.getElementById('userAddress').innerHTML = "Can't find user addresses. If using metamask, are you sure it's unlocked and initialized?<br>";
 }
+
+//replace innerHTML with hide
 function onUserAddressesVisible(account) {
-    document.getElementById('userAddress').innerHTML = "Registered Account: " + account;
+    document.getElementById('userAddress').hide = "Your Account: " + account;
 }
 
-function ApplicantStringEditMode(flag) {
+function recipientStringEditMode(flag) {
 	if (flag) {
-		$('#ApplicantStringUpdateStartButton').hide();
-		$('#applicantMessageUpdateTextarea').show();
-		$('#ApplicantStringUpdateCommitButton').show();
-		$('#ApplicantStringUpdateCancelButton').show();
-		$('#CBDApplicantStringOutput').hide();
+		$('#recipientStringUpdateStartButton').hide();
+		$('#associateMessageUpdateTextarea').show();
+		$('#recipientStringUpdateCommitButton').show();
+		$('#recipientStringUpdateCancelButton').show();
+		$('#CBDRecipientStringOutput').hide();
 	}
 	else {
-		$('#ApplicantStringUpdateStartButton').show();
-		$('#applicantMessageUpdateTextarea').hide();
-		$('#ApplicantStringUpdateCommitButton').hide();
-		$('#ApplicantStringUpdateCancelButton').hide();
-		$('#CBDApplicantStringOutput').show();
+		$('#recipientStringUpdateStartButton').show();
+		$('#associateMessageUpdateTextarea').hide();
+		$('#recipientStringUpdateCommitButton').hide();
+		$('#recipientStringUpdateCancelButton').hide();
+		$('#CBDRecipientStringOutput').show();
 	}
 }
-function startApplicantStringUpdate() {
-  ApplicantStringEditMode(true);
+function startRecipientStringUpdate() {
+  recipientStringEditMode(true);
   
-	$('#applicantMessageUpdateTextarea').val(CBD.ApplicantString);
+	$('#associateMessageUpdateTextarea').val(CBD.recipientString);
 }
-function cancelApplicantStringUpdate() {
-	ApplicantStringEditMode(false);
+function cancelRecipientStringUpdate() {
+	recipientStringEditMode(false);
 }
-function commitapplicantMessageUpdate() {
-	callLogapplicantMessage($('#applicantMessageUpdateTextarea').val());
-	ApplicantStringEditMode(false);
+function commitAssociateMessageUpdate() {
+	callLogAssociateMessage($('#associateMessageUpdateTextarea').val());
+	recipientStringEditMode(false);
 }
 
-function licensedArchitectStringEditMode(flag) {
+function licensedPlannerStringEditMode(flag) {
 	if (flag) {
-		$('#licensedArchitectStringUpdateStartButton').hide();
-		$('#licensedArchitectMessageUpdateTextarea').show();
-		$('#licensedArchitectStringUpdateCommitButton').show();
-		$('#licensedArchitectStringUpdateCancelButton').show();
-		$('#CBDlicensedArchitectStringOutput').hide();
+		$('#licensedPlannerStringUpdateStartButton').hide();
+		$('#licensedPlannerMessageUpdateTextarea').show();
+		$('#licensedPlannerStringUpdateCommitButton').show();
+		$('#licensedPlannerStringUpdateCancelButton').show();
+		$('#CBDlicensedPlannerStringOutput').hide();
 	}
 	else {
-		$('#licensedArchitectStringUpdateStartButton').show();
-		$('#licensedArchitectMessageUpdateTextarea').hide();
-		$('#licensedArchitectStringUpdateCommitButton').hide();
-		$('#licensedArchitectStringUpdateCancelButton').hide();
-		$('#CBDlicensedArchitectStringOutput').show();
+		$('#licensedPlannerStringUpdateStartButton').show();
+		$('#licensedPlannerMessageUpdateTextarea').hide();
+		$('#licensedPlannerStringUpdateCommitButton').hide();
+		$('#licensedPlannerStringUpdateCancelButton').hide();
+		$('#CBDlicensedPlannerStringOutput').show();
 	}
 }
-function startlicensedArchitectStringUpdate() {
-	licensedArchitectStringEditMode(true);
+function startlicensedPlannerStringUpdate() {
+	licensedPlannerStringEditMode(true);
 
-	$('#licensedArchitectMessageUpdateTextarea').val(CBD.licensedArchitectString);
+	$('#licensedPlannerMessageUpdateTextarea').val(CBD.licensedPlannerString);
 }
-function cancellicensedArchitectStringUpdate() {
-	licensedArchitectStringEditMode(false);
+function cancellicensedPlannerStringUpdate() {
+	licensedPlannerStringEditMode(false);
 }
-function commitlicensedArchitectMessageUpdate() {
-	callLoglicensedArchitectMessage($('#licensedArchitectMessageUpdateTextarea').val());
-	licensedArchitectStringEditMode(false);
+function commitlicensedPlannerMessageUpdate() {
+	callLoglicensedPlannerMessage($('#licensedPlannerMessageUpdateTextarea').val());
+	licensedPlannerStringEditMode(false);
 }
 
 
 //smart contract caller and handler functions
 function handleCommitResult(res) {
-  $('#CBDApplicantOutput').text(web3.eth.defaultAccount)
+  $('#CBDRecipientOutput').text(web3.eth.defaultAccount)
 }
 
 function callCommit() {
   //CBDContract.methods.commit().send({'value':commitAmountInWei, "from":web3.eth.defaultAccount})
 
-  PalladioCadToken.methods.commit(CBDContract.options.address).send({"from":web3.eth.defaultAccount})
+  PalladioSpaToken.methods.commit(CBDContract.options.address).send({"from":web3.eth.defaultAccount})
   .then(handleCommitResult);
 }
 function handleRecoverFundsResult(err, res) {
@@ -271,7 +273,7 @@ function callRelease(amountInEth) {
     .then(handleReleaseResult);
 }
 function releaseFromForm() {
-    var form = document.getElementById('licensedArchitectFundsInputGroup');
+    var form = document.getElementById('licensedPlannerFundsInputGroup');
     var amount = Number(form.elements['amount'].value);
 
     callRelease(amount);
@@ -282,37 +284,37 @@ function callAddFunds(includedEth) {
   .then(handleAddFundsResult)
 }
 function addFundsFromForm() {
-	var form = document.getElementById('licensedArchitectFundsInputGroup');
+	var form = document.getElementById('licensedPlannerFundsInputGroup');
 	var amount = Number(form.elements.amount.value);
 	callAddFunds(amount);
 }
 function callDefaultAction(){
   CBDContract.methods.callDefaultAction(logCallResult);
 }
-function delayDefaultAction(){
-  var delayDefaultActionInHours = Number($('input[type=text]', '#delayDefaultActionForm').val());
-  CBDContract.methods.delayAutorelease().call()
-  .then(logCallResult);
-}
-function handleUpdateapplicantMessageResult(err, res) {
+//function delayDefaultAction(){
+//  var delayDefaultActionInHours = Number($('input[type=text]', '#delayDefaultActionForm').val());
+//  CBDContract.methods.delayAutorelease().call()
+//  .then(logCallResult);
+//}
+function handleUpdateAssociateMessageResult(err, res) {
     if (err) console.log(err.message);
 }
 
-function callLogapplicantMessage(message) {
-    CBDContract.methods.logapplicantStatement(message).send({"from":web3.eth.defaultAccount})
-    .then(handleUpdateapplicantMessageResult);
+function callLogAssociateMessage(message) {
+    CBDContract.methods.logassociateArchitectStatement(message).send({"from":web3.eth.defaultAccount})
+    .then(handleUpdateAssociateMessageResult);
 }
-function handleUpdatelicensedArchitectMessageResult(err, res) {
+function handleUpdatelicensedPlannerMessageResult(err, res) {
     if (err) console.log(err.message);
 }
 
-function callLoglicensedArchitectMessage(message) {
-  CBDContract.methods.loglicensedArchitectStatement(message).send({"from":web3.eth.defaultAccount})
+function callLoglicensedPlannerMessage(message) {
+  CBDContract.methods.loglicensedPlannerStatement(message).send({"from":web3.eth.defaultAccount})
   .then(handleUpdateLicensedMessageResult);
 }
 
-function callUpdatelicensedArchitectMessage(message) {
-    CBDContract.methods.setlicensedArchitectString(message, handleUpdatelicensedArchitectMessageResult);
+function callUpdatelicensedPlannerMessage(message) {
+    CBDContract.methods.setlicensedPlannerString(message, handleUpdatelicensedPlannerMessageResult);
 }
 function callCancel() {
     CBDContract.methods.recoverFunds().call()
@@ -326,12 +328,12 @@ function registerForNewEvents()
   // NOTE: Metamask doesn't support live events yet, see https://github.com/MetaMask/metamask-extension/issues/2601
 
   // web3.eth.getBlockNumber(function(err, blockNumber) {
-  //   CBDContract.events.LicensedArchitectStatement({fromBlock:blockNumber}, function(err, event) {
+  //   CBDContract.events.licensedPlannerStatement({fromBlock:blockNumber}, function(err, event) {
   //     insertChat("Architect", event.returnValues[0], event.blockNumber);
   //   })
 
-  //   CBDContract.events.applicantStatement({fromBlock:blockNumber}, function(err, event) {
-  //     insertChat("applicant", event.returnValues[0], event.blockNumber);
+  //   CBDContract.events.AssociateArchitectStatement({fromBlock:blockNumber}, function(err, event) {
+  //     insertChat("Associate", event.returnValues[0], event.blockNumber);
   //   })
   // })
 }
@@ -340,12 +342,12 @@ function insertAllInChat(eventArray){
   eventArray.forEach(function(eventObject){
     who = "Contract"
     text = eventObject.event;
-    if (eventObject.event == "LicensedArchitectStatement") {
-      who = "Architect"
+    if (eventObject.event == "licensedPlannerStatement") {
+      who = "licensedPlanner";
       text = eventObject.returnValues[0]
     }
-    else if (eventObject.event == "applicantStatement") {
-      who = "applicant"
+    else if (eventObject.event == "AssociateArchitectStatement") {
+      who = "Associate";
       text = eventObject.returnValues[0]
     }
 
@@ -376,7 +378,7 @@ function insertChat(who, text, blockNumber){
       '</div>' +
     '</li>';
   }
-  else if(who === "applicant"){
+  else if(who === "Associate"){
     control =
       '<li class="list-group-item list-group-item-info" style="width:100%;">' +
         '<div class="row">' +

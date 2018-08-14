@@ -56,6 +56,46 @@
       "0xd3c3f30e65e78b8bb81bc95255f498a2fae43b37b24da5a4bff7aa3c2fede5b9": {
         "name": "PalladioSpaToken",
         "address": "0xe4a4f67fa625b99da116c46b56bf874aafdcca66"
+      },
+      "0x89c9ffd2b6f142c10aa4bd17a1d1cc55e9b9c39dc619f7aa6210da4c3386ce15": {
+        "name": "CBDContractFactory",
+        "address": "0xc493313f2efa18c7bd275284d9e1c5f964d1c74f"
+      },
+      "0x1d4ac6fd88a0422de4197e57058c6c5794aaea595bdcfb46e6540df6b6d81788": {
+        "name": "PalladioSpaToken",
+        "address": "0x0df4da07c570e84fb5eb256fa01bfdafb6d592a4"
+      },
+      "0x1d86d78fdfb3a2a02b6cde4e9ef2fc6939bf47c3a11596a3273078dc960c5533": {
+        "name": "CBDContractFactory",
+        "address": "0x720b14e068c627f4bc49ab9c39d9aac7c5a45d91"
+      },
+      "0xbd08c326ef07fb7a8e3a00040674c5404efe27deefb772742cdd63612425d490": {
+        "name": "PalladioSpaToken",
+        "address": "0xf470142750d44b8da45202e44fa1a81cd0aadad1"
+      },
+      "0x00071f2f70903c639c73195524f87eea5358038686d724dad44029cd1c79cd4c": {
+        "name": "CBDContractFactory",
+        "address": "0x533f670770d6d514b7eacd549f029e4cf1d035e3"
+      },
+      "0x502ce028389c834af6af4eafb263ebe6f9415d317503185d7024ffe6a893f084": {
+        "name": "CBDContractFactory",
+        "address": "0xe80fae0370d2c6a51bc8d78f1f8394d4a59d7d69"
+      },
+      "0x5f8e5e576c377ee399d78af589001f6db971d23abd13a703374164e2afce0045": {
+        "name": "PalladioSpaToken",
+        "address": "0x44a33611df129595a90febc5363f51e8b3d73692"
+      },
+      "0x13f74bf83b4d16d6bbdc6e8d85f98191478056a8a4afda6b62341765ba168a1f": {
+        "name": "PalladioSpaToken",
+        "address": "0xd69318b4a6bdd60ac4f168b753da0e31a4b8d454"
+      },
+      "0x926c57090d6ffb1f9db9b6914c18a025da6f1e49f14b196d014f18175c7ef235": {
+        "name": "CBDContractFactory",
+        "address": "0x469b1131760d5a8a3ff7dfe82cf67cc8d412f6eb"
+      },
+      "0xac055d7bdfb56f3c9e438788ae3d0bf0e824f86c47788ef35000a60f5da3d4a3": {
+        "name": "PalladioSpaToken",
+        "address": "0xc6707cfef8c054b259b403fbdd545337af95ddd7"
       }
     },
     "name": "testnet"
