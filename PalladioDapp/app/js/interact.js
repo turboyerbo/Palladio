@@ -291,11 +291,11 @@ function addFundsFromForm() {
 function callDefaultAction(){
   CBDContract.methods.callDefaultAction(logCallResult);
 }
-//function delayDefaultAction(){
-//  var delayDefaultActionInHours = Number($('input[type=text]', '#delayDefaultActionForm').val());
-//  CBDContract.methods.delayAutorelease().call()
-//  .then(logCallResult);
-//}
+function delayDefaultAction(){
+ var delayDefaultActionInHours = Number($('input[type=text]', '#delayDefaultActionForm').val());
+ CBDContract.methods.delayAutorelease().call()
+ .then(logCallResult);
+}
 function handleUpdateAssociateMessageResult(err, res) {
     if (err) console.log(err.message);
 }
@@ -343,7 +343,7 @@ function insertAllInChat(eventArray){
     who = "Contract"
     text = eventObject.event;
     if (eventObject.event == "licensedPlannerStatement") {
-      who = "licensedPlanner";
+      who = "Planner";
       text = eventObject.returnValues[0]
     }
     else if (eventObject.event == "AssociateArchitectStatement") {
@@ -364,7 +364,7 @@ function getEventsAndParticipants(moduleParam, actionParam, additionalKeyValue){
 
 function insertChat(who, text, blockNumber){
   var control = "";
-  if (who === "Architect"){
+  if (who === "Planner"){
     control =
     '<li class="list-group-item list-group-item-success" style="width:100%">' +
       '<div class="row">' +

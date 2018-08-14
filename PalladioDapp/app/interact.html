@@ -154,29 +154,25 @@
                             <div id='commitInputGroup' hidden='true'><button onclick="callCommit()">Commit to Contract</button></div>
                         </td>
                     </tr>
-                    <tr>
-                        <td align='center'>
-
-                            <!--Architect's Statements-->
-                            
+                    <tr>                           
+<!--Architect's Statements-->                        
+                        <td align='center'>                        
                             <br><br>
                             <div id='updatelicensedPlannerStringInputGroup' hidden='true'>
                                 <button id='licensedPlannerStringUpdateStartButton' onclick="startlicensedPlannerStringUpdate()">Chat</button><br><br>
-                                <textarea id='licensedPlannerMessageUpdateTextarea' rows='15' cols='80' hidden='true'></textarea><br>
+                                <textarea id='licensedPlannerMessageUpdateTextarea' rows='15' cols='15 ' hidden='true'></textarea><br>
                                 <button id='licensedPlannerStringUpdateCommitButton' hidden='true' onClick="commitlicensedPlannerMessageUpdate()">Log Statement</button><br><br>
                                 <button id='licensedPlannerStringUpdateCancelButton' hidden='true' onClick="cancellicensedPlannerStringUpdate()">Cancel</button>
                             </div>
                             <div id='CBDlicensedPlannerStringOutput' align='left'></div>
                         </td>
                
-                        <td align='center'>
-
                            <!-- Associate's Statements:-->
-                            
+                        <td align='center'>                                                
                             <br><br>
                             <div id='updateRecipientStringInputGroup' hidden='true'>
                                 <button id='recipientStringUpdateStartButton' onclick="startRecipientStringUpdate()">Chat</button><br><br>
-                                <textarea id='associateMessageUpdateTextarea' rows='15' cols='80' hidden='true'></textarea><br>
+                                <textarea id='associateMessageUpdateTextarea' rows='15' cols='15' hidden='true'></textarea><br>
                                 <button id='recipientStringUpdateCommitButton' hidden='true' onClick="commitAssociateMessageUpdate()">Log Statement</button><br><br>
                                 <button id='recipientStringUpdateCancelButton' hidden='true' onClick="cancelRecipientStringUpdate()">Cancel</button>
                             </div>

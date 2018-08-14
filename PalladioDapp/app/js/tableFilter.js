@@ -79,11 +79,11 @@ function filterTableOnAddresses(){
   //iterate through each element that is currently in the table and check if one of its addresses starts with the search string
   tableBodyChildrenArray.forEach(function(child){
     var contractAddressString = child.querySelector(".contractAddress").innerText.trim();
-    var payerAddressString = child.querySelector(".payerAddress").innerText.trim();
+    var licensedPlannerAddressString = child.querySelector(".licensedPlannerAddress").innerText.trim();
     var recipientAddressString = child.querySelector(".recipientAddress").innerText.trim();
 
     if(!contractAddressString.startsWith(String(addressFilter.value.trim()))
-    && !payerAddressString.startsWith(String(addressFilter.value.trim()))
+    && !licensedPlannerAddressString.startsWith(String(addressFilter.value.trim()))
     && !recipientAddressString.startsWith(String(addressFilter.value.trim()))){
       child.style.display = 'none';
     }

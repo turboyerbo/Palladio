@@ -29,10 +29,10 @@ function buildCBDRow(cbdObject, index){
   $(`.state:eq(${index})`).text(CBD_STATES[cbdObject.state]);
   $(`.contractAddress:eq(${index})`).text("View Consultation");
   $(`.contractAddress:eq(${index})`).attr("href", `interact.html?contractAddress=${cbdObject.address}`);
- //  $(`.licensedPlannerAddress:eq(${index})`).html(`\n <a href='${window.etherscanURL}${cbdObject.licensedPlanner}'>${cbdObject.licensedPlanner}</a>`);
-  // $(`.licensedPlannerAddress:eq(${index})`).text(cbdObject.licensedPlanner);
+  $(`.licensedPlannerAddress:eq(${index})`).html(`\n <a href='${window.etherscanURL}${cbdObject.licensedPlanner}'>${cbdObject.licensedPlanner}</a>`);
+  $(`.licensedPlannerAddress:eq(${index})`).text(cbdObject.licensedPlanner);
   if(cbdObject.recipient !== "0x0000000000000000000000000000000000000000"){
-    // $(`.recipient:eq(${index})`).text("recipient: \n" + );
+  $(`.recipient:eq(${index})`).text("recipient: \n" + );
   $(`.recipient:eq(${index})`).html(`recipient: \n <a href='${window.etherscanURL}${cbdObject.recipient}'>${cbdObject.recipient}</a>`);
   }else{
   $(`.recipient:eq(${index})`).html(`<a href='interact.html?contractAddress=${cbdObject.address}'> Contract Details </a>`);

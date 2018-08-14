@@ -66,7 +66,7 @@ function validateAccount(account)
 function getSelectedAccount(selectId)
 {
     var select = $(selectId)[0]
-    return select.options[select.selectedIndex].text
+    return select.options[select.selectedIndex].text;
 }
 
 // Given the ID of a HTML select element,
@@ -126,5 +126,5 @@ function parseCBDState(state, address)
   
     var currentTime = (new Date).getTime() / 1000;
     cbdObject['autoreleaseTimePassed'] = (currentTime >= Number(state[10]));
-    return cbdObject
+    return cbdObject;
 }
