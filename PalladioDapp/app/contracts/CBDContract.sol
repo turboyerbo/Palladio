@@ -269,9 +269,12 @@ contract CBDContract {
     ////////////////////////////////////////////////////////
 
     // Chat/logging functions
+
+
     function loglicensedPlannerStatement(string statement)
     public
-    onlylicensedPlanner() {
+    onlylicensedPlanner() 
+    {
         LicensedPlannerStatement(statement);
     }
 

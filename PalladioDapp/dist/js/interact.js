@@ -34,10 +34,10 @@ function onError(err)
   $('#CBDlicensedPlannerStringOutput').text("None");
   $('#CBDRecipientStringOutput').text("None");
   $('#CBDBalanceOutput').text("None");
-  $('#CBDFundsDepositedOutput').text("None");
+//  $('#CBDFundsDepositedOutput').text("None");
 
-  $('#CBDFundsReleasedOutput').text("None");
-  $('#CBDDefaultActionOutput').text("None");
+//  $('#CBDFundsReleasedOutput').text("None");
+//  $('#CBDDefaultActionOutput').text("None");
   $('#CBDDefaultTimeoutLength').text("None");
   $('#CBDTable').css("background-color", "grey");
 }
@@ -80,20 +80,20 @@ function insertInstanceStatsInPage(CBD, address){
   CBD.recipient == '0x0000000000000000000000000000000000000000' ? $('#CBDRecipientOutput').text("None") : $('#CBDRecipientOutput').text(CBD.associateArchitect);
   $('#CBDRecipientStringOutput').text(CBD.recipientString, 'ether');
   $('#CBDBalanceOutput').text(CBD.balance + ' ETH');
-  $('#CBDFundsDepositedOutput').text(CBD.amountDeposited + ' ETH');
-  $('#CBDFundsReleasedOutput').text(CBD.amountReleased + ' ETH');
+//  $('#CBDFundsDepositedOutput').text(CBD.amountDeposited + ' ETH');
+//  $('#CBDFundsReleasedOutput').text(CBD.amountReleased + ' ETH');
 
-  $('#CBDDefaultActionOutput').text(CBD.defaultAction);
-  $('#CBDDefaultTimeoutLength').text(secondsToDhms(CBD.autoreleaseInterval));
-  $('#CBDDefaultActionTriggerTime').text(new Date(CBD.autoreleaseTime * 1000).toLocaleString());
+//  $('#CBDDefaultActionOutput').text(CBD.defaultAction);
+//  $('#CBDDefaultTimeoutLength').text(secondsToDhms(CBD.autoreleaseInterval));
+//  $('#CBDDefaultActionTriggerTime').text(new Date(CBD.autoreleaseTime * 1000).toLocaleString());
 
   switch(CBD.state)
   {
     case 0:
-    $('#CBDTable').css("background-color", "#fffff");
+    $('#CBDTable').css("background-color", "#white");
     break;
     case 1:
-    $('#CBDTable').css("background-color", "#2196F3");
+    $('#CBDTable').css("background-color", "#f6fbfc");
     break;
     case 2:
     $('#CBDTable').css("background-color", "grey");
@@ -139,12 +139,12 @@ function updateExtraInput(CBD) {
       }
       else if((CBD.autoreleaseTime > currentTime && CBD.state == 1 && (userIsRecipient || userIslicensedPlanner))){
         document.getElementById('CBDDefaultActionTriggerTime').hidden = false;
-        document.getElementById('CBDDefaultTimeoutLengthGroup').hidden = false;
+        document.getElementById('CBDDefaultTimeoutLengthGroup').hidden = true;
         document.getElementById('defaultActionInputGroup').hidden = true;
         document.getElementById('delayDefaultActionForm').hidden = true;
         differenceTime = Number(CBD.autoreleaseTime) - res.timestamp;
         if(0 < differenceTime && differenceTime <= 86400){
-          $('#CBDDefaultActionTriggerTime').text("Remaining Time: " + secondsToDhms(differenceTime));
+          $('#CBDDefaultActionTriggerTime').text("Time: " + secondsToDhms(differenceTime));
         }
         else{
           $('#CBDDefaultActionTriggerTime').text(new Date(CBD.autoreleaseTime * 1000).toLocaleString());
@@ -160,7 +160,7 @@ function updateExtraInput(CBD) {
         document.getElementById('CBDDefaultTimeoutLengthGroup').hidden = false;
       }
       else {
-        document.getElementById('CBDDefaultActionTriggerTime').hidden = true;
+        document.getElementById('CBDDefaultActionTriggerTime').hidden = false;
         document.getElementById('CBDDefaultTimeoutLengthGroup').hidden = false;
       }
   });
@@ -182,8 +182,10 @@ function checkForUserAddresses() {
 function onUserAddressesNotVisible() {
     document.getElementById('userAddress').innerHTML = "Can't find user addresses. If using metamask, are you sure it's unlocked and initialized?<br>";
 }
+
+//replace innerHTML with hide
 function onUserAddressesVisible(account) {
-    document.getElementById('userAddress').innerHTML = "Registered Account: " + account;
+    document.getElementById('userAddress').hide = "Your Account: " + account;
 }
 
 function recipientStringEditMode(flag) {
@@ -289,11 +291,11 @@ function addFundsFromForm() {
 function callDefaultAction(){
   CBDContract.methods.callDefaultAction(logCallResult);
 }
-function delayDefaultAction(){
-  var delayDefaultActionInHours = Number($('input[type=text]', '#delayDefaultActionForm').val());
-  CBDContract.methods.delayAutorelease().call()
-  .then(logCallResult);
-}
+//function delayDefaultAction(){
+//  var delayDefaultActionInHours = Number($('input[type=text]', '#delayDefaultActionForm').val());
+//  CBDContract.methods.delayAutorelease().call()
+//  .then(logCallResult);
+//}
 function handleUpdateAssociateMessageResult(err, res) {
     if (err) console.log(err.message);
 }
@@ -341,11 +343,11 @@ function insertAllInChat(eventArray){
     who = "Contract"
     text = eventObject.event;
     if (eventObject.event == "licensedPlannerStatement") {
-      who = "Architect"
+      who = "licensedPlanner";
       text = eventObject.returnValues[0]
     }
     else if (eventObject.event == "AssociateArchitectStatement") {
-      who = "Associate"
+      who = "Associate";
       text = eventObject.returnValues[0]
     }
 
